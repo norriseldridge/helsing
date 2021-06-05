@@ -1,6 +1,6 @@
 ﻿using Helsing.Client.Audio.Api;
 using Helsing.Client.Item;
-using Helsing.Client.Player.Api;
+using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.UI.Api;
 using Helsing.Client.World.Api;
 using UniRx;
@@ -85,12 +85,24 @@ namespace Helsing.Client.World
 
             if ((ITile)parentTile == playerController.CurrentTile)
             {
-                // disable the door because we're done and moving on to the next level
-                enabled = false;
-
-                // TODO fade out, load, fade in
-                LevelLoader.Load(nextLevel);
+                LoadNextLevel();
             }
+        }
+
+        private async void LoadNextLevel()
+        {
+            // disable the door because we're done and moving on to the next level
+            enabled = false;
+
+            // disable the player as well
+            playerController.Enabled = false;
+
+            // wait for the fade
+            broker.Publish(new FadeData(true));
+            await broker.Receive<FadeCompleteMessage>().Take(1).ToTask();
+
+            // TODO fade out, load, fade in
+            LevelLoader.Load(nextLevel);
         }
 
         private bool PlayerIsNeighbor()

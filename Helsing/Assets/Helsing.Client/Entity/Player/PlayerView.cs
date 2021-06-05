@@ -3,7 +3,7 @@ using Helsing.Client.Item;
 using UnityEngine;
 using Zenject;
 
-namespace Helsing.Client.Player
+namespace Helsing.Client.Entity.Player
 {
     public class PlayerView : MonoBehaviour
     {

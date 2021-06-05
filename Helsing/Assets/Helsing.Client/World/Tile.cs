@@ -31,7 +31,7 @@ namespace Helsing.Client.World
 
             foreach (var tile in tiles)
             {
-                if (tile != this && Vector3.Distance(transform.position, tile.transform.position) <= NEIGHBOR_RANGE)
+                if (tile != this && Vector2.Distance(transform.position, tile.transform.position) <= NEIGHBOR_RANGE)
                 {
                     Vector2 dir = tile.transform.position - transform.position;
                     neighbors[dir.ToDirection()] = tile;

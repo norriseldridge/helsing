@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Helsing.Client.Item.Api;
 
-namespace Helsing.Client.Player
+namespace Helsing.Client.Entity.Player
 {
     public class PlayerInventory : IInventory
     {

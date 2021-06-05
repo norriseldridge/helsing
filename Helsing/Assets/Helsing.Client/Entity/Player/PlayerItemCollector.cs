@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Helsing.Client.Player
+namespace Helsing.Client.Entity.Player
 {
     public class PlayerItemCollector : MonoBehaviour, IItemCollector
     {
