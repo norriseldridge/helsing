@@ -9,8 +9,15 @@ namespace Helsing.Client.Entity.Enemy
     public class VampireController : MonoBehaviour, IEnemy
     {
         [SerializeField]
+        VampireView view;
+
+        [SerializeField]
         [Min(0)]
         int turnDelay;
+
+        [SerializeField]
+        [Min(1)]
+        int moveCount;
 
         [SerializeField]
         TileMover tileMover;
@@ -29,9 +36,17 @@ namespace Helsing.Client.Entity.Enemy
             if (turnIndex < turnDelay) return;
 
             turnIndex = 0;
-            var dest = pathFinder.FindNextPath(tileMover.CurrentTile.Value, tileMap.TileAt(new Vector2(6, 0)));
-            if (dest != null)
-                await tileMover.MoveTo(dest.Tile);
+
+            for (var i = 0; i < moveCount; ++i)
+            {
+                var dest = pathFinder.FindNextPath(tileMover.CurrentTile.Value, tileMap.TileAt(new Vector2(6, 0)));
+                if (dest != null)
+                {
+                    view.State = EntityState.Walk;
+                    await tileMover.MoveTo(dest.Tile);
+                    view.State = EntityState.Idle;
+                }
+            }
         }
     }
 }
