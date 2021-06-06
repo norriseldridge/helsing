@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Helsing.Client.Api;
+using Helsing.Client.Audio.Api;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -19,11 +22,20 @@ namespace Helsing.Client
         IPlayerController playController;
 
         [Inject]
-        void Inject(ITileMap tileMap, IEnemyBlackboard enemyBlackboard, IPlayerController playController) =>
+        void Inject(ITileMap tileMap,
+            IEnemyBlackboard enemyBlackboard,
+            IPlayerController playController) =>
             (this.tileMap, this.enemyBlackboard, this.playController) = (tileMap, enemyBlackboard, playController);
 
         private void Start()
         {
+            // listen for player dead
+            playController.Living
+                .LivesAsObservable
+                .Where(l => l <= 0)
+                .Subscribe(_ => OnPlayerDied())
+                .AddTo(this);
+
             // add everything else into another group
             var otherGroup = new TurnTakerGroup();
             var turnTakers = FindObjectsOfType<MonoBehaviour>().OfType<ITurnTaker>().Where(t => !(t is IPlayerController));
@@ -31,6 +43,7 @@ namespace Helsing.Client
             {
                 otherGroup.TurnTakers.Add(turnTaker);
             }
+            otherGroup.TurnTakers.Add(new MinimumTurnTaker());
             turnTakerGroups.Add(otherGroup);
 
             // add the player into a group
@@ -46,6 +59,11 @@ namespace Helsing.Client
                 PerformTurns();
                 enemyBlackboard.Clear();
             }
+        }
+
+        private void OnPlayerDied()
+        {
+            Debug.Log("Player died...");
         }
 
         private async void PerformTurns()
@@ -88,19 +106,27 @@ namespace Helsing.Client
         private void DealDamage(List<GameObject> livings)
         {
             // deal damage to all living objects that are "in combat"
+            var toDealDamage = new List<ILiving>();
             for (var i = 0; i < livings.Count; ++i)
             {
+                var iliving = livings[i].GetComponent<ILiving>();
+                if (iliving.Lives <= 0 || toDealDamage.Contains(iliving))
+                    continue;
+
                 for (var j = 0; j < livings.Count; ++j)
                 {
                     if (i != j)
                     {
-                        if (Vector2.Distance(livings[i].transform.position, livings[j].transform.position) < 0.1f)
+                        var dist = Vector2.Distance(livings[i].transform.position, livings[j].transform.position);
+                        if (dist < 1f)
                         {
-                            livings[i].GetComponent<ILiving>().DealDamage();
+                            toDealDamage.Add(iliving);
                         }
                     }
                 }
             }
+
+            toDealDamage.ForEach(l => l.DealDamage());
         }
 
         private void CleanUpDead(List<GameObject> livings)
@@ -130,6 +156,11 @@ namespace Helsing.Client
                     deads.RemoveAt(0);
                 }
             }
+        }
+
+        private class MinimumTurnTaker : ITurnTaker
+        {
+            public Task TakeTurn() => Task.Delay(50);
         }
     }
 }

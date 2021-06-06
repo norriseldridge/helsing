@@ -10,6 +10,9 @@ namespace Helsing.Client.Entity
         [SerializeField]
         int lives;
 
+        [SerializeField]
+        GameObject deathSource;
+
         public int Lives => livesAsObservable.Value;
         public IReadOnlyReactiveProperty<int> LivesAsObservable => livesAsObservable;
         IReactiveProperty<int> livesAsObservable;
@@ -23,6 +26,10 @@ namespace Helsing.Client.Entity
         private void Awake()
         {
             livesAsObservable = new ReactiveProperty<int>(lives);
+            livesAsObservable
+                .Where(l => l <= 0)
+                .Subscribe(_ => OnDeath())
+                .AddTo(this);
         }
 
         private void Start() =>
@@ -30,9 +37,16 @@ namespace Helsing.Client.Entity
                 .Subscribe(m => livesAsObservable.Value += m.lives)
                 .AddTo(this);
 
-        public void DealDamage()
+        private void OnDeath()
         {
-            livesAsObservable.Value--;
+            if (deathSource != null)
+            {
+                var temp = Instantiate(deathSource);
+                temp.transform.position = transform.position;
+            }
+            gameObject.SetActive(false);
         }
+
+        public void DealDamage() => livesAsObservable.Value--;
     }
 }

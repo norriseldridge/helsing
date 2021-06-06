@@ -14,6 +14,7 @@ namespace Helsing.Client.Entity.Player
         [SerializeField]
         PlayerView view;
 
+        public ILiving Living => living;
         public ITile CurrentTile => tileMover.CurrentTile.Value;
 
         public bool Enabled
@@ -22,6 +23,7 @@ namespace Helsing.Client.Entity.Player
             set => enabled = value;
         }
 
+        ILiving living;
         ITileMover tileMover;
         bool isTurn = false;
         IReactiveProperty<ITile> destinationTile = new ReactiveProperty<ITile>();
@@ -29,6 +31,7 @@ namespace Helsing.Client.Entity.Player
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
+            living = GetComponent<ILiving>();
         }
 
         private void Update()

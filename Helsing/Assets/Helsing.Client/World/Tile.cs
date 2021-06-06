@@ -43,8 +43,12 @@ namespace Helsing.Client.World
         public ITile GetNeighbor(Direction direction) =>
             neighbors.ContainsKey(direction) ? neighbors[direction] : null;
 
-        public IEnumerable<GameObject> GetGameObjectsOnTile() =>
-            FindObjectsOfType<GameObject>().Where(g => g != gameObject && Vector2.Distance(g.transform.position, transform.position) < 0.1f);
+        public IEnumerable<GameObject> GetGameObjectsOnTile()
+        {
+            if (this == null)
+                return Enumerable.Empty<GameObject>();
+            return FindObjectsOfType<GameObject>().Where(g => g != null && g != gameObject && Vector2.Distance(g.transform.position, transform.position) < 0.1f);
+        }
 
 #if UNITY_EDITOR
         private void Update()

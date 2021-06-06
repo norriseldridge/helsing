@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using Helsing.Client.Entity.Player.Api;
+using Zenject;
 
 namespace Helsing.Client.UI
 {
@@ -10,11 +12,15 @@ namespace Helsing.Client.UI
         [SerializeField]
         Text text;
 
-        [SerializeField]
-        Living player;
+        IPlayerController playerController;
+
+        [Inject]
+        void Inject(IPlayerController playerController) =>
+            this.playerController = playerController;
 
         private void Start() =>
-            player.LivesAsObservable
+            playerController.Living
+                .LivesAsObservable
                 .Subscribe(l => text.text = $"{l}")
                 .AddTo(this);
     }
