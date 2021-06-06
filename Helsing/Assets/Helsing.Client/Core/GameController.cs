@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Helsing.Client.Api;
-using Helsing.Client.Audio.Api;
+using Helsing.Client.Core.Api;
+using Helsing.Client.Entity;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
@@ -11,24 +11,31 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Helsing.Client
+namespace Helsing.Client.Core
 {
     public class GameController : MonoBehaviour
     {
         bool isPerformingTurns = false;
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
+        IMessageBroker broker;
         ITileMap tileMap;
         IEnemyBlackboard enemyBlackboard;
         IPlayerController playController;
 
         [Inject]
-        void Inject(ITileMap tileMap,
+        void Inject(IMessageBroker broker,
+            ITileMap tileMap,
             IEnemyBlackboard enemyBlackboard,
             IPlayerController playController) =>
-            (this.tileMap, this.enemyBlackboard, this.playController) = (tileMap, enemyBlackboard, playController);
+            (this.broker, this.tileMap, this.enemyBlackboard, this.playController) = (broker, tileMap, enemyBlackboard, playController);
 
         private void Start()
         {
+            // listen for tile movers
+            broker.Receive<TileMoverMovedMessage>()
+                .Subscribe(t => OnTileMoverMoved(t.tileMover))
+                .AddTo(this);
+
             // listen for player dead
             playController.Living
                 .LivesAsObservable
@@ -61,6 +68,9 @@ namespace Helsing.Client
             }
         }
 
+        private void OnTileMoverMoved(ITileMover tileMover) =>
+            ResolveCombatAtTile(tileMover.CurrentTile.Value);
+
         private void OnPlayerDied()
         {
             Debug.Log("Player died...");
@@ -72,14 +82,13 @@ namespace Helsing.Client
             foreach (var turnTakerGroup in turnTakerGroups)
             {
                 await turnTakerGroup.TakeTurn();
-                ResolveCombat();
             }
             isPerformingTurns = false;
         }
 
-        private void ResolveCombat()
+        private void ResolveCombatAtTile(ITile tile)
         {
-            List<GameObject> livings = GetAllLivingGameObjects();
+            List<GameObject> livings = GetAllLivingGameObjectsOnTile(tile);
             if (livings.Count > 1)
             {
                 DealDamage(livings);
@@ -87,21 +96,8 @@ namespace Helsing.Client
             }
         }
 
-        private List<GameObject> GetAllLivingGameObjects()
-        {
-            List<GameObject> livings = new List<GameObject>();
-            foreach (var tile in tileMap.Tiles)
-            {
-                var gameObjects = tile.GetGameObjectsOnTile();
-                foreach (var g in gameObjects)
-                {
-                    var living = g.GetComponent<ILiving>();
-                    if (living != null)
-                        livings.Add(g);
-                }
-            }
-            return livings;
-        }
+        private List<GameObject> GetAllLivingGameObjectsOnTile(ITile tile) =>
+            new List<GameObject>(TileMover.GetObjectsOnTile(tile).Where(g => g.GetComponent<ILiving>() != null));
 
         private void DealDamage(List<GameObject> livings)
         {

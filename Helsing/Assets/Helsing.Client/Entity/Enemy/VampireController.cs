@@ -42,13 +42,12 @@ namespace Helsing.Client.Entity.Enemy
         {
             ++turnIndex;
             if (turnIndex < turnDelay) return;
-
             turnIndex = 0;
 
-            ITile target = null;
-            if (CanSeePlayer())
+            for (var i = 0; i < moveCount; ++i)
             {
-                for (var i = 0; i < moveCount; ++i)
+                ITile target = null;
+                if (CanSeePlayer())
                 {
                     var dest = pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
                     if (dest != null)
@@ -56,16 +55,16 @@ namespace Helsing.Client.Entity.Enemy
                         target = dest.Tile;
                     }
                 }
+
+                if (target == null)
+                    target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
+
+                view.FlipX = target.Position.x < transform.position.x;
+                enemyBlackboard.SetWillBeOccupied(target);
+                view.State = EntityState.Walk;
+                await tileMover.MoveTo(target);
+                view.State = EntityState.Idle;
             }
-
-            if (target == null)
-                target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
-
-            view.FlipX = target.Position.x < transform.position.x;
-            enemyBlackboard.SetWillBeOccupied(target);
-            view.State = EntityState.Walk;
-            await tileMover.MoveTo(target);
-            view.State = EntityState.Idle;
         }
 
         private bool CanSeePlayer()

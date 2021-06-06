@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Helsing.Client.Api
+namespace Helsing.Client.Core.Api
 {
     public interface ITurnTaker
     {

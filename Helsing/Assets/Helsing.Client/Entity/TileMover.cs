@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.World.Api;
 using UniRx;
@@ -9,6 +11,18 @@ namespace Helsing.Client.Entity
 {
     public class TileMover : MonoBehaviour, ITileMover
     {
+        public static List<GameObject> GetObjectsOnTile(ITile tile)
+        {
+            var tileMovers = FindObjectsOfType<MonoBehaviour>().OfType<TileMover>();
+            var gameObjects = new List<GameObject>();
+            foreach (var mover in tileMovers)
+            {
+                if (mover.CurrentTile.Value == tile)
+                    gameObjects.Add(mover.gameObject);
+            }
+            return gameObjects;
+        }
+
         [SerializeField]
         private float speed;
 
@@ -18,11 +32,12 @@ namespace Helsing.Client.Entity
         readonly IReactiveProperty<ITile> currentTile = new ReactiveProperty<ITile>();
         readonly IReactiveProperty<ITile> nextTile = new ReactiveProperty<ITile>();
 
+        IMessageBroker broker;
         ITileMap tileMap;
 
         [Inject]
-        private void Inject(ITileMap tileMap) =>
-            this.tileMap = tileMap;
+        private void Inject(IMessageBroker broker, ITileMap tileMap) =>
+            (this.broker, this.tileMap) = (broker, tileMap);
 
         private void Start()
         {
@@ -52,6 +67,7 @@ namespace Helsing.Client.Entity
             transform.position = targetPosition;
             currentTile.Value = nextTile.Value;
             nextTile.Value = null;
+            broker.Publish(new TileMoverMovedMessage(this));
         }
     }
 }

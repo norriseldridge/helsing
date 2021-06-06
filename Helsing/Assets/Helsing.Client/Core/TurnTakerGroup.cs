@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Helsing.Client.Api;
+using Helsing.Client.Core.Api;
 
-namespace Helsing.Client
+namespace Helsing.Client.Core
 {
     public class TurnTakerGroup : ITurnTaker
     {

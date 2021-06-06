@@ -1,4 +1,4 @@
-﻿using Helsing.Client.Api;
+﻿using Helsing.Client.Core.Api;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.World.Api;
 

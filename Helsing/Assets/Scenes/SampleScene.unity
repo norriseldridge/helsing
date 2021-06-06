@@ -5173,6 +5173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  target: {fileID: 1838532162}
 --- !u!43 &540205887
 Mesh:
   m_ObjectHideFlags: 0
@@ -8853,7 +8854,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 854169617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8ee7bd74a004e19bbb7ed8386d67c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 96ba89f9c605e4b83820d0000e1b6df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &854169619
@@ -21140,7 +21141,7 @@ PrefabInstance:
     - target: {fileID: 8737948071064422425, guid: 5d1975e78d64742a196493064df27ac8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8737948071064422425, guid: 5d1975e78d64742a196493064df27ac8,
         type: 3}

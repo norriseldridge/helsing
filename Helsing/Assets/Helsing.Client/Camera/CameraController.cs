@@ -1,6 +1,4 @@
-﻿using Helsing.Client.Entity.Player.Api;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace Helsing.Client.Camera
 {
@@ -9,18 +7,15 @@ namespace Helsing.Client.Camera
         [SerializeField]
         float speed;
 
-        IPlayerController playerController;
-
-        [Inject]
-        private void Inject(IPlayerController playerController) =>
-            this.playerController = playerController;
+        [SerializeField]
+        Transform target;
 
         private void Update()
         {
-            if (playerController != null)
+            if (target != null)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
-                    playerController.CurrentTile.Position + (Vector3.back * 10),
+                    target.position + (Vector3.back * 10),
                     Time.deltaTime * speed);
             }
         }
