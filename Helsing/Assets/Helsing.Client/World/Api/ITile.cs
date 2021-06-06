@@ -10,5 +10,6 @@ namespace Helsing.Client.World.Api
         ITile GetNeighbor(Direction direction);
         Vector3 Position { get; }
         bool IsFloor { get; }
+        IEnumerable<GameObject> GetGameObjectsOnTile();
     }
 }

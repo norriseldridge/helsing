@@ -5,7 +5,7 @@ namespace Helsing.Client.World.Api
 {
     public interface ITileMap
     {
-        IEnumerable<Tile> Tiles { get; }
-        Tile TileAt(Vector2 position);
+        IEnumerable<ITile> Tiles { get; }
+        ITile TileAt(Vector2 position);
     }
 }

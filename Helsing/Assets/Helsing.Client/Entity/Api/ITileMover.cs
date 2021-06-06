@@ -1,4 +1,5 @@
-﻿using Helsing.Client.World.Api;
+﻿using System.Threading.Tasks;
+using Helsing.Client.World.Api;
 using UniRx;
 
 namespace Helsing.Client.Entity.Api
@@ -8,5 +9,6 @@ namespace Helsing.Client.Entity.Api
         IReadOnlyReactiveProperty<ITile> CurrentTile { get; }
         IReadOnlyReactiveProperty<ITile> NextTile { get; }
         bool CanMove(Direction direction);
+        Task MoveTo(ITile newNextTile);
     }
 }

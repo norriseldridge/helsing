@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.World.Api;
 using UnityEngine;
@@ -6,6 +7,8 @@ using Zenject;
 
 namespace Helsing.Client.Entity.Enemy
 {
+    [RequireComponent(typeof(ILiving))]
+    [RequireComponent(typeof(ITileMover))]
     public class VampireController : MonoBehaviour, IEnemy
     {
         [SerializeField]
@@ -19,16 +22,19 @@ namespace Helsing.Client.Entity.Enemy
         [Min(1)]
         int moveCount;
 
-        [SerializeField]
-        TileMover tileMover;
-
         int turnIndex = 0;
+        ITileMover tileMover;
         IPathFinder pathFinder;
         ITileMap tileMap;
 
         [Inject]
         private void Inject(IPathFinder pathFinder, ITileMap tileMap) =>
             (this.pathFinder, this.tileMap) = (pathFinder, tileMap);
+
+        private void Awake()
+        {
+            tileMover = GetComponent<ITileMover>();
+        }
 
         public async Task TakeTurn()
         {

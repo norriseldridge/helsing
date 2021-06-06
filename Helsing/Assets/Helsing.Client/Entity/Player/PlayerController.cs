@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
 using UniRx;
@@ -6,13 +7,12 @@ using UnityEngine;
 
 namespace Helsing.Client.Entity.Player
 {
+    [RequireComponent(typeof(ILiving))]
+    [RequireComponent(typeof(ITileMover))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField]
         PlayerView view;
-
-        [SerializeField]
-        TileMover tileMover;
 
         public ITile CurrentTile => tileMover.CurrentTile.Value;
 
@@ -22,8 +22,14 @@ namespace Helsing.Client.Entity.Player
             set => enabled = value;
         }
 
+        ITileMover tileMover;
         bool isTurn = false;
         IReactiveProperty<ITile> destinationTile = new ReactiveProperty<ITile>();
+
+        private void Awake()
+        {
+            tileMover = GetComponent<ITileMover>();
+        }
 
         private void Update()
         {

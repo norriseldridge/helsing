@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Helsing.Client.Api;
+using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Player.Api;
+using Helsing.Client.World.Api;
 using UnityEngine;
 using Zenject;
 
@@ -11,11 +13,12 @@ namespace Helsing.Client
     {
         bool isPerformingTurns = false;
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
+        ITileMap tileMap;
         IPlayerController playController;
 
         [Inject]
-        void Inject(IPlayerController playController) =>
-            this.playController = playController;
+        void Inject(ITileMap tileMap, IPlayerController playController) =>
+            (this.tileMap, this.playController) = (tileMap, playController);
 
         private void Start()
         {
@@ -46,8 +49,86 @@ namespace Helsing.Client
         {
             isPerformingTurns = true;
             foreach (var turnTakerGroup in turnTakerGroups)
+            {
                 await turnTakerGroup.TakeTurn();
+                ResolveCombat(turnTakerGroup);
+            }
             isPerformingTurns = false;
+        }
+
+        private void ResolveCombat(TurnTakerGroup attackerGroup)
+        {
+            List<GameObject> livings = GetAllLivingGameObjects();
+            if (livings.Count > 1)
+            {
+                DealDamageFromAttackers(livings, attackerGroup);
+                CleanUpDead(livings);
+            }
+        }
+
+        private List<GameObject> GetAllLivingGameObjects()
+        {
+            List<GameObject> livings = new List<GameObject>();
+            foreach (var tile in tileMap.Tiles)
+            {
+                var gameObjects = tile.GetGameObjectsOnTile();
+                foreach (var g in gameObjects)
+                {
+                    var living = g.GetComponent<ILiving>();
+                    if (living != null)
+                        livings.Add(g);
+                }
+            }
+            return livings;
+        }
+
+        private void DealDamageFromAttackers(List<GameObject> livings, TurnTakerGroup attackerGroup)
+        {
+            // deal damage to all living objects that are "in combat"
+            for (var i = 0; i < livings.Count; ++i)
+            {
+                for (var j = 0; j < livings.Count; ++j)
+                {
+                    if (i != j)
+                    {
+                        if (Vector2.Distance(livings[i].transform.position, livings[j].transform.position) < 0.1f)
+                        {
+                            var turnTaker = livings[i].GetComponent<ITurnTaker>();
+                            if (!attackerGroup.TurnTakers.Contains(turnTaker))
+                                livings[i].GetComponent<ILiving>().DealDamage();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CleanUpDead(List<GameObject> livings)
+        {
+            // remove any dead one from turn takers
+            var deads = new List<GameObject>();
+            foreach (var g in livings)
+            {
+                var living = g.GetComponent<ILiving>();
+                if (living.Lives <= 0)
+                {
+                    var turnTaker = g.GetComponent<ITurnTaker>();
+                    foreach (var turnTakerGroup in turnTakerGroups)
+                    {
+                        turnTakerGroup.TurnTakers.Remove(turnTaker);
+                    }
+                    deads.Add(g);
+                }
+            }
+
+            // destroy the dead game objects
+            if (deads.Count > 0)
+            {
+                while (deads.Count > 0)
+                {
+                    Destroy(deads[0]);
+                    deads.RemoveAt(0);
+                }
+            }
         }
     }
 }

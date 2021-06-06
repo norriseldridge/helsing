@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Helsing.Client.World.Api;
 using UnityEngine;
 
@@ -41,6 +42,9 @@ namespace Helsing.Client.World
 
         public ITile GetNeighbor(Direction direction) =>
             neighbors.ContainsKey(direction) ? neighbors[direction] : null;
+
+        public IEnumerable<GameObject> GetGameObjectsOnTile() =>
+            FindObjectsOfType<GameObject>().Where(g => g != gameObject && Vector2.Distance(g.transform.position, transform.position) < 0.1f);
 
 #if UNITY_EDITOR
         private void Update()

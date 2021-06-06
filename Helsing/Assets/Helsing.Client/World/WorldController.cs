@@ -14,7 +14,8 @@ namespace Helsing.Client.World
 #if UNITY_EDITOR // only here to let rendering of the map happen in edit mode
         int frames = 0;
 
-        public IEnumerable<Tile> Tiles { get; private set; }
+        public IEnumerable<ITile> Tiles => tiles;
+        private List<Tile> tiles;
 
         private void Update()
         {
@@ -54,16 +55,16 @@ namespace Helsing.Client.World
             if (editorDrawGizmos == false)
                 return;
 #endif
-            Tiles = FindObjectsOfType<Tile>();
+            tiles = new List<Tile>(FindObjectsOfType<Tile>());
             foreach (var tile in Tiles)
             {
                 tile.FindNeighbors(Tiles);
             }
         }
 
-        public Tile TileAt(Vector2 position)
+        public ITile TileAt(Vector2 position)
         {
-            foreach (var tile in Tiles)
+            foreach (var tile in tiles)
             {
                 if (Vector2.Distance(tile.transform.position, position) < 1)
                     return tile;
