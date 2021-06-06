@@ -10,7 +10,9 @@ namespace Helsing.Client.Entity
         [SerializeField]
         int lives;
 
-        public int Lives => lives;
+        public int Lives => livesAsObservable.Value;
+        public IReadOnlyReactiveProperty<int> LivesAsObservable => livesAsObservable;
+        IReactiveProperty<int> livesAsObservable;
 
         IMessageBroker broker;
 
@@ -18,11 +20,19 @@ namespace Helsing.Client.Entity
         public void Inject(IMessageBroker broker) =>
             this.broker = broker;
 
+        private void Awake()
+        {
+            livesAsObservable = new ReactiveProperty<int>(lives);
+        }
+
         private void Start() =>
             broker.Receive<HealthPickUpMessage>()
-                .Subscribe(m => lives += m.lives)
+                .Subscribe(m => livesAsObservable.Value += m.lives)
                 .AddTo(this);
 
-        public void DealDamage() => lives--;
+        public void DealDamage()
+        {
+            livesAsObservable.Value--;
+        }
     }
 }

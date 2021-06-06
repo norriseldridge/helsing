@@ -52,6 +52,7 @@ namespace Helsing.Client.Entity.Enemy
                     var dest = pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
                     if (dest != null)
                     {
+                        view.FlipX = dest.Tile.Position.x < transform.position.x;
                         enemyBlackboard.SetWillBeOccupied(dest.Tile);
                         view.State = EntityState.Walk;
                         await tileMover.MoveTo(dest.Tile);
