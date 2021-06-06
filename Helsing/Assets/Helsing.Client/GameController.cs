@@ -117,8 +117,16 @@ namespace Helsing.Client
                 {
                     if (i != j)
                     {
-                        var dist = Vector2.Distance(livings[i].transform.position, livings[j].transform.position);
-                        if (dist < 1f)
+                        var imover = livings[i].GetComponent<ITileMover>();
+                        var jmover = livings[j].GetComponent<ITileMover>();
+
+                        if (imover == null || jmover == null)
+                        {
+                            Debug.LogError($"One of the TurnTakers attempting to deal damage is not an ITileMover! {imover} {jmover}");
+                            continue;
+                        }
+
+                        if (imover.CurrentTile.Value == jmover.CurrentTile.Value)
                         {
                             toDealDamage.Add(iliving);
                         }

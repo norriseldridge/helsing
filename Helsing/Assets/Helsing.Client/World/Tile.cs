@@ -23,6 +23,14 @@ namespace Helsing.Client.World
             set => isFloor = value;
         }
 
+        public bool IsHidingSpot => hidingSpot;
+        bool hidingSpot = false;
+
+        public void Start()
+        {
+            hidingSpot = GetGameObjectsOnTile().Where(g => g.GetComponent<IHidingSpot>() != null).Count() > 0;
+        }
+
         public void FindNeighbors(IEnumerable<ITile> tiles) => FindNeighbors(tiles as List<Tile>);
 
         public void FindNeighbors(IEnumerable<Tile> tiles)
@@ -42,6 +50,13 @@ namespace Helsing.Client.World
 
         public ITile GetNeighbor(Direction direction) =>
             neighbors.ContainsKey(direction) ? neighbors[direction] : null;
+
+        public ITile GetRandomNeighbor(bool floorsOnly)
+        {
+            var validNeighbors = floorsOnly ? neighbors.Values.Where(n => n.IsFloor) : neighbors.Values;
+            var index = Random.Range(0, validNeighbors.Count());
+            return validNeighbors.ElementAt(index);
+        }
 
         public IEnumerable<GameObject> GetGameObjectsOnTile()
         {

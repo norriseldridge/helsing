@@ -9,5 +9,6 @@ namespace Helsing.Client.Entity.Player.Api
         ILiving Living { get; }
         ITile CurrentTile { get; }
         bool Enabled { get; set; }
+        bool IsHidden { get; }
     }
 }

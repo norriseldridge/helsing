@@ -23,6 +23,8 @@ namespace Helsing.Client.Entity.Player
             set => enabled = value;
         }
 
+        public bool IsHidden => CurrentTile.IsHidingSpot;
+
         ILiving living;
         ITileMover tileMover;
         bool isTurn = false;
@@ -36,9 +38,10 @@ namespace Helsing.Client.Entity.Player
 
         private void Update()
         {
+            view.Visible = !IsHidden;
             if (!isTurn) return;
 
-            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 if (tileMover.CanMove(Direction.Up))
                 {
@@ -46,7 +49,7 @@ namespace Helsing.Client.Entity.Player
                 }
             }
 
-            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 if (tileMover.CanMove(Direction.Down))
                 {
@@ -54,7 +57,7 @@ namespace Helsing.Client.Entity.Player
                 }
             }
 
-            if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 if (view.FlipX && tileMover.CanMove(Direction.Left))
                     destinationTile.Value = tileMover.CurrentTile.Value.GetNeighbor(Direction.Left);
@@ -62,12 +65,17 @@ namespace Helsing.Client.Entity.Player
                     view.FlipX = true;
             }
 
-            if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 if (!view.FlipX && tileMover.CanMove(Direction.Right))
                     destinationTile.Value = tileMover.CurrentTile.Value.GetNeighbor(Direction.Right);
                 else
                     view.FlipX = false;
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                destinationTile.Value = CurrentTile;
             }
         }
 
