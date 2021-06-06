@@ -73,7 +73,7 @@ namespace Helsing.Client.Entity.Player
                     view.FlipX = false;
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 destinationTile.Value = CurrentTile;
             }

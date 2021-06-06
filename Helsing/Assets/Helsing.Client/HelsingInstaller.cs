@@ -24,6 +24,7 @@ namespace Helsing.Client
             Container.Bind<IAudioPool>().FromComponentInHierarchy().AsSingle();
             Container.Bind<IInventory>().To<PlayerInventory>().AsSingle();
             Container.Bind<IPlayerController>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IDeadPopup>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

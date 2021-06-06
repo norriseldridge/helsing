@@ -5,31 +5,13 @@ using Zenject;
 
 namespace Helsing.Client.Entity.Player
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : EntityView
     {
-        public bool FlipX
-        {
-            get => view.flipX;
-            set
-            {
-                view.flipX = value;
-
-                if (item != null)
-                    item.FlipX = value;
-            }
-        }
-
         public bool Visible
         {
             get => gameObject.activeSelf;
             set => gameObject.SetActive(value);
         }
-
-        [SerializeField]
-        SpriteRenderer view;
-
-        [SerializeField]
-        Animator animator;
 
         [SerializeField]
         AudioClip step;
@@ -42,26 +24,26 @@ namespace Helsing.Client.Entity.Player
 
         IAudioPool audioPool;
         float currentStepDelay;
-
         int stepIndex;
 
         [Inject]
         private void Inject(IAudioPool audioPool) =>
             this.audioPool = audioPool;
 
-        public EntityState State { get; set; } = EntityState.Idle;
-
         private void Update()
         {
+            if (item != null)
+                item.FlipX = FlipX;
+
             currentStepDelay -= Time.deltaTime;
             switch (State)
             {
                 case EntityState.Idle:
-                    animator.Play("Player_Idle");
+                    Play("Player_Idle");
                     break;
 
                 case EntityState.Walk:
-                    animator.Play("Player_Run");
+                    Play("Player_Run");
                     if (currentStepDelay <= 0.0f)
                     {
                         stepIndex++;

@@ -12,7 +12,11 @@ namespace Helsing.Client.Core
 
         public async Task TakeTurn()
         {
-            var tasks = TurnTakers.Where(t => t != null).Select(t => t.TakeTurn());
+            var valid = TurnTakers.Where(t => t != null);
+            if (valid.Count() == 0)
+                return;
+
+            var tasks = valid.Select(t => t.TakeTurn());
             await Task.WhenAll(tasks);
         }
     }

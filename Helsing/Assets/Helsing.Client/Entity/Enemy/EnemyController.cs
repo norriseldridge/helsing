@@ -10,10 +10,10 @@ namespace Helsing.Client.Entity.Enemy
 {
     [RequireComponent(typeof(ILiving))]
     [RequireComponent(typeof(ITileMover))]
-    public class VampireController : MonoBehaviour, IEnemy
+    public class EnemyController : MonoBehaviour, IEnemy
     {
         [SerializeField]
-        VampireView view;
+        EntityView view;
 
         [SerializeField]
         [Min(0)]

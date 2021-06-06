@@ -6,6 +6,7 @@ using Helsing.Client.Entity;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
+using Helsing.Client.UI.Api;
 using Helsing.Client.World.Api;
 using UniRx;
 using UnityEngine;
@@ -18,19 +19,21 @@ namespace Helsing.Client.Core
         bool isPerformingTurns = false;
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
         IMessageBroker broker;
-        ITileMap tileMap;
+        IDeadPopup deadPopup;
         IEnemyBlackboard enemyBlackboard;
         IPlayerController playController;
 
         [Inject]
         void Inject(IMessageBroker broker,
-            ITileMap tileMap,
+            IDeadPopup deadPopup,
             IEnemyBlackboard enemyBlackboard,
             IPlayerController playController) =>
-            (this.broker, this.tileMap, this.enemyBlackboard, this.playController) = (broker, tileMap, enemyBlackboard, playController);
+            (this.broker, this.deadPopup, this.enemyBlackboard, this.playController) = (broker, deadPopup, enemyBlackboard, playController);
 
         private void Start()
         {
+            deadPopup.Visible = false;
+
             // listen for tile movers
             broker.Receive<TileMoverMovedMessage>()
                 .Subscribe(t => OnTileMoverMoved(t.tileMover))
@@ -71,10 +74,8 @@ namespace Helsing.Client.Core
         private void OnTileMoverMoved(ITileMover tileMover) =>
             ResolveCombatAtTile(tileMover.CurrentTile.Value);
 
-        private void OnPlayerDied()
-        {
-            Debug.Log("Player died...");
-        }
+        private void OnPlayerDied() =>
+            deadPopup.Visible = true;
 
         private async void PerformTurns()
         {
@@ -116,11 +117,17 @@ namespace Helsing.Client.Core
                         var imover = livings[i].GetComponent<ITileMover>();
                         var jmover = livings[j].GetComponent<ITileMover>();
 
+                        var ienemy = livings[i].GetComponent<IEnemy>();
+                        var jenemy = livings[j].GetComponent<IEnemy>();
+
                         if (imover == null || jmover == null)
                         {
                             Debug.LogError($"One of the TurnTakers attempting to deal damage is not an ITileMover! {imover} {jmover}");
                             continue;
                         }
+
+                        if (ienemy != null && jenemy != null)
+                            continue; // don't let enemies kill each other
 
                         if (imover.CurrentTile.Value == jmover.CurrentTile.Value)
                         {

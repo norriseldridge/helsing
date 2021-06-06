@@ -64,10 +64,13 @@ namespace Helsing.Client.World
 
         public ITile TileAt(Vector2 position)
         {
-            foreach (var tile in tiles)
+            if (tiles != null)
             {
-                if (Vector2.Distance(tile.transform.position, position) < 1)
-                    return tile;
+                foreach (var tile in tiles)
+                {
+                    if (Vector2.Distance(tile.transform.position, position) < 1)
+                        return tile;
+                }
             }
 
             return null;
