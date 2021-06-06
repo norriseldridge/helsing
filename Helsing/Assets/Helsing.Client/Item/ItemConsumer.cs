@@ -9,7 +9,8 @@ namespace Helsing.Client.Item
         IInventory inventory;
 
         [Inject]
-        private void Inject(IInventory inventory) => this.inventory = inventory;
+        private void Inject(IInventory inventory) =>
+            this.inventory = inventory;
 
         public bool Consume(IItemData item, int quantity)
         {

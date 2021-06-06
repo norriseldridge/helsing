@@ -7,6 +7,8 @@ using Helsing.Client.World;
 using Helsing.Client.World.Api;
 using UniRx;
 using Zenject;
+using Helsing.Client.Entity.Enemy.Api;
+using Helsing.Client.Entity.Enemy;
 
 namespace Helsing.Client
 {
@@ -15,6 +17,7 @@ namespace Helsing.Client
         public override void InstallBindings()
         {
             Container.Bind<IMessageBroker>().FromInstance(MessageBroker.Default).AsSingle();
+            Container.Bind<IEnemyBlackboard>().FromInstance(new EnemyBlackboard()).AsSingle();
             Container.Bind<IPathFinder>().FromInstance(new PathFinder()).AsSingle();
             Container.Bind<IPromptMessage>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ITileMap>().FromComponentInHierarchy().AsSingle();

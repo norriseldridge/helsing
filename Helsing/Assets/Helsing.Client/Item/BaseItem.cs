@@ -25,6 +25,6 @@ namespace Helsing.Client.Item
             spriteRenderer.sprite = (itemData != null) ? itemData.Sprite : null;
         }
 
-        public void OnCollect() => Destroy(gameObject);
+        public virtual void OnCollect() => Destroy(gameObject);
     }
 }

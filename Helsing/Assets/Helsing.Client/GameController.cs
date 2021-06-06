@@ -2,6 +2,7 @@
 using System.Linq;
 using Helsing.Client.Api;
 using Helsing.Client.Entity.Api;
+using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
 using UnityEngine;
@@ -14,11 +15,12 @@ namespace Helsing.Client
         bool isPerformingTurns = false;
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
         ITileMap tileMap;
+        IEnemyBlackboard enemyBlackboard;
         IPlayerController playController;
 
         [Inject]
-        void Inject(ITileMap tileMap, IPlayerController playController) =>
-            (this.tileMap, this.playController) = (tileMap, playController);
+        void Inject(ITileMap tileMap, IEnemyBlackboard enemyBlackboard, IPlayerController playController) =>
+            (this.tileMap, this.enemyBlackboard, this.playController) = (tileMap, enemyBlackboard, playController);
 
         private void Start()
         {
@@ -42,6 +44,7 @@ namespace Helsing.Client
             if (!isPerformingTurns)
             {
                 PerformTurns();
+                enemyBlackboard.Clear();
             }
         }
 
@@ -51,17 +54,17 @@ namespace Helsing.Client
             foreach (var turnTakerGroup in turnTakerGroups)
             {
                 await turnTakerGroup.TakeTurn();
-                ResolveCombat(turnTakerGroup);
+                ResolveCombat();
             }
             isPerformingTurns = false;
         }
 
-        private void ResolveCombat(TurnTakerGroup attackerGroup)
+        private void ResolveCombat()
         {
             List<GameObject> livings = GetAllLivingGameObjects();
             if (livings.Count > 1)
             {
-                DealDamageFromAttackers(livings, attackerGroup);
+                DealDamage(livings);
                 CleanUpDead(livings);
             }
         }
@@ -82,7 +85,7 @@ namespace Helsing.Client
             return livings;
         }
 
-        private void DealDamageFromAttackers(List<GameObject> livings, TurnTakerGroup attackerGroup)
+        private void DealDamage(List<GameObject> livings)
         {
             // deal damage to all living objects that are "in combat"
             for (var i = 0; i < livings.Count; ++i)
@@ -93,9 +96,7 @@ namespace Helsing.Client
                     {
                         if (Vector2.Distance(livings[i].transform.position, livings[j].transform.position) < 0.1f)
                         {
-                            var turnTaker = livings[i].GetComponent<ITurnTaker>();
-                            if (!attackerGroup.TurnTakers.Contains(turnTaker))
-                                livings[i].GetComponent<ILiving>().DealDamage();
+                            livings[i].GetComponent<ILiving>().DealDamage();
                         }
                     }
                 }

@@ -8,7 +8,16 @@ namespace Helsing.Client.World
     {
         Dictionary<ITile, TransientPathNodeData> pathNodes = new Dictionary<ITile, TransientPathNodeData>();
 
-        public TransientPathNodeData FindNextPath(ITile start, ITile end)
+        public TransientPathNodeData FindNextPath(ITile start, ITile end, IList<ITile> ignore = null)
+        {
+            var (next, _) = SolvePath(start, end, ignore);
+            return next;
+        }
+
+        public (TransientPathNodeData data, int distance) FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null) =>
+            SolvePath(start, end, ignore);
+
+        private (TransientPathNodeData data, int distance) SolvePath(ITile start, ITile end, IList<ITile> ignore = null)
         {
             Reset();
 
@@ -41,11 +50,14 @@ namespace Helsing.Client.World
 
                 foreach (var n in current.Tile.Neighbors)
                 {
+                    if (ignore != null && ignore.Contains(n))
+                        continue;
+
                     var neighbor = GetPathNode(n);
                     if (!neighbor.isVisited && n.IsFloor)
                         toTest.Add(neighbor);
 
-                    float possibleLowerLocalGoal = current.localGoal + Vector2.Distance(current.Tile.Position, neighbor.Tile.Position);
+                    float possibleLowerLocalGoal = current.localGoal + Heuristic(current.Tile, neighbor.Tile);
 
                     if (possibleLowerLocalGoal < neighbor.localGoal)
                     {
@@ -58,15 +70,18 @@ namespace Helsing.Client.World
 
             // we didn't find a path so there is no next step
             if (endNode.parent == null)
-                return null;
+                return (null, 0);
 
+            var count = 0;
             var next = endNode;
             while (next.parent != startNode)
             {
                 next = next.parent;
+
+                ++count;
             }
 
-            return next;
+            return (next, count);
         }
 
         private float Heuristic(ITile current, ITile target)
