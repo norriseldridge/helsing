@@ -1,7 +1,6 @@
 ﻿using Helsing.Client.Entity.Api;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
 namespace Helsing.Client.Entity
 {
@@ -17,12 +16,6 @@ namespace Helsing.Client.Entity
         public IReadOnlyReactiveProperty<int> LivesAsObservable => livesAsObservable;
         IReactiveProperty<int> livesAsObservable;
 
-        IMessageBroker broker;
-
-        [Inject]
-        public void Inject(IMessageBroker broker) =>
-            this.broker = broker;
-
         private void Awake()
         {
             livesAsObservable = new ReactiveProperty<int>(lives);
@@ -31,11 +24,6 @@ namespace Helsing.Client.Entity
                 .Subscribe(_ => OnDeath())
                 .AddTo(this);
         }
-
-        private void Start() =>
-            broker.Receive<HealthPickUpMessage>()
-                .Subscribe(m => livesAsObservable.Value += m.lives)
-                .AddTo(this);
 
         private void OnDeath()
         {
@@ -48,5 +36,7 @@ namespace Helsing.Client.Entity
         }
 
         public void DealDamage() => livesAsObservable.Value--;
+
+        public void AddLife() => livesAsObservable.Value++;
     }
 }

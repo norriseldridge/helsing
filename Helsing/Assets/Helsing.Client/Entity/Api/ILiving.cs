@@ -7,5 +7,6 @@ namespace Helsing.Client.Entity.Api
         int Lives { get; }
         IReadOnlyReactiveProperty<int> LivesAsObservable { get; }
         void DealDamage();
+        void AddLife();
     }
 }

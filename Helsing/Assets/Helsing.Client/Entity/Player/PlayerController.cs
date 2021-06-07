@@ -4,6 +4,7 @@ using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Helsing.Client.Entity.Player
 {
@@ -25,15 +26,27 @@ namespace Helsing.Client.Entity.Player
 
         public bool IsHidden => CurrentTile.IsHidingSpot;
 
+        IMessageBroker broker;
         ILiving living;
         ITileMover tileMover;
         bool isTurn = false;
         IReactiveProperty<ITile> destinationTile = new ReactiveProperty<ITile>();
 
+        [Inject]
+        private void Inject(IMessageBroker broker) =>
+            this.broker = broker;
+
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
             living = GetComponent<ILiving>();
+        }
+
+        private void Start()
+        {
+            broker.Receive<HealthPickUpMessage>()
+                .Subscribe(_ => living.AddLife())
+                .AddTo(this);
         }
 
         private void Update()

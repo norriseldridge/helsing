@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 49412600}
   - component: {fileID: 49412602}
   - component: {fileID: 49412601}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 151928123}
   - component: {fileID: 151928122}
   - component: {fileID: 151928121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 155822961}
   - component: {fileID: 155822963}
   - component: {fileID: 155822962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166531553}
   - component: {fileID: 166531552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BloodPattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 199243552}
   - component: {fileID: 199243551}
   - component: {fileID: 199243550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1406,7 +1406,7 @@ GameObject:
   - component: {fileID: 257547653}
   - component: {fileID: 257547655}
   - component: {fileID: 257547654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1501,7 +1501,7 @@ GameObject:
   - component: {fileID: 259608098}
   - component: {fileID: 259608100}
   - component: {fileID: 259608099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,7 +1597,7 @@ GameObject:
   - component: {fileID: 286089940}
   - component: {fileID: 286089939}
   - component: {fileID: 286089938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 334583608}
   - component: {fileID: 334583607}
   - component: {fileID: 334583606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2330,7 +2330,7 @@ GameObject:
   - component: {fileID: 334665315}
   - component: {fileID: 334665314}
   - component: {fileID: 334665313}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2615,7 +2615,7 @@ GameObject:
   - component: {fileID: 360645270}
   - component: {fileID: 360645269}
   - component: {fileID: 360645268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2900,7 +2900,7 @@ GameObject:
   - component: {fileID: 366939053}
   - component: {fileID: 366939052}
   - component: {fileID: 366939051}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3021,7 +3021,7 @@ GameObject:
   - component: {fileID: 370176266}
   - component: {fileID: 370176268}
   - component: {fileID: 370176267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3116,7 +3116,7 @@ GameObject:
   - component: {fileID: 373232613}
   - component: {fileID: 373232615}
   - component: {fileID: 373232614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3614,7 +3614,7 @@ GameObject:
   - component: {fileID: 403076921}
   - component: {fileID: 403076920}
   - component: {fileID: 403076919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3900,7 +3900,7 @@ GameObject:
   - component: {fileID: 425674467}
   - component: {fileID: 425674466}
   - component: {fileID: 425674465}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4021,7 +4021,7 @@ GameObject:
   - component: {fileID: 447125176}
   - component: {fileID: 447125178}
   - component: {fileID: 447125177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4118,7 +4118,7 @@ GameObject:
   - component: {fileID: 456083595}
   - component: {fileID: 456083594}
   - component: {fileID: 456083593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4282,7 +4282,7 @@ GameObject:
   - component: {fileID: 481933063}
   - component: {fileID: 481933062}
   - component: {fileID: 481933061}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4377,7 +4377,7 @@ GameObject:
   - component: {fileID: 488131081}
   - component: {fileID: 488131083}
   - component: {fileID: 488131082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4750,7 +4750,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -5009,7 +5009,7 @@ GameObject:
   - component: {fileID: 546703120}
   - component: {fileID: 546703122}
   - component: {fileID: 546703121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5103,7 +5103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551021775}
   - component: {fileID: 551021776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallDecor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5260,7 +5260,7 @@ GameObject:
   - component: {fileID: 575217489}
   - component: {fileID: 575217488}
   - component: {fileID: 575217487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5382,7 +5382,7 @@ GameObject:
   - component: {fileID: 590527764}
   - component: {fileID: 590527763}
   - component: {fileID: 590527762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6483,7 +6483,7 @@ GameObject:
   - component: {fileID: 635681067}
   - component: {fileID: 635681066}
   - component: {fileID: 635681068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6693,7 +6693,7 @@ GameObject:
   - component: {fileID: 661547054}
   - component: {fileID: 661547056}
   - component: {fileID: 661547055}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6789,7 +6789,7 @@ GameObject:
   - component: {fileID: 672506369}
   - component: {fileID: 672506368}
   - component: {fileID: 672506367}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6911,7 +6911,7 @@ GameObject:
   - component: {fileID: 678396789}
   - component: {fileID: 678396788}
   - component: {fileID: 678396787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7032,7 +7032,7 @@ GameObject:
   - component: {fileID: 684591618}
   - component: {fileID: 684591620}
   - component: {fileID: 684591619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7127,7 +7127,7 @@ GameObject:
   - component: {fileID: 689134634}
   - component: {fileID: 689134636}
   - component: {fileID: 689134635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7223,7 +7223,7 @@ GameObject:
   - component: {fileID: 722113566}
   - component: {fileID: 722113565}
   - component: {fileID: 722113564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7343,7 +7343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 745055061}
   - component: {fileID: 745055063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7389,7 +7389,7 @@ GameObject:
   - component: {fileID: 751314967}
   - component: {fileID: 751314966}
   - component: {fileID: 751314965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7510,7 +7510,7 @@ GameObject:
   - component: {fileID: 755134720}
   - component: {fileID: 755134722}
   - component: {fileID: 755134721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7932,7 +7932,7 @@ GameObject:
   - component: {fileID: 784948607}
   - component: {fileID: 784948606}
   - component: {fileID: 784948605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8210,7 +8210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 793991215}
   - component: {fileID: 793991216}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TorchBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8348,8 +8348,8 @@ Canvas:
   m_GameObject: {fileID: 796988474}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8357,7 +8357,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1263832303
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &796988478
@@ -8470,7 +8470,7 @@ GameObject:
   - component: {fileID: 820376889}
   - component: {fileID: 820376888}
   - component: {fileID: 820376887}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8755,7 +8755,7 @@ GameObject:
   - component: {fileID: 826186168}
   - component: {fileID: 826186167}
   - component: {fileID: 826186166}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9040,7 +9040,7 @@ GameObject:
   - component: {fileID: 831427223}
   - component: {fileID: 831427222}
   - component: {fileID: 831427221}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9163,7 +9163,7 @@ GameObject:
   - component: {fileID: 842128213}
   - component: {fileID: 842128212}
   - component: {fileID: 842128211}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: '[Item] Stake'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9296,7 +9296,7 @@ GameObject:
   - component: {fileID: 851590156}
   - component: {fileID: 851590158}
   - component: {fileID: 851590157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9598,7 +9598,7 @@ GameObject:
   - component: {fileID: 871299796}
   - component: {fileID: 871299795}
   - component: {fileID: 871299794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9715,7 +9715,7 @@ GameObject:
   - component: {fileID: 900173221}
   - component: {fileID: 900173220}
   - component: {fileID: 900173219}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9837,7 +9837,7 @@ GameObject:
   - component: {fileID: 906188482}
   - component: {fileID: 906188481}
   - component: {fileID: 906188480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9959,7 +9959,7 @@ GameObject:
   - component: {fileID: 921485970}
   - component: {fileID: 921485969}
   - component: {fileID: 921485968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10080,7 +10080,7 @@ GameObject:
   - component: {fileID: 926374668}
   - component: {fileID: 926374670}
   - component: {fileID: 926374669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10495,7 +10495,7 @@ GameObject:
   - component: {fileID: 941896780}
   - component: {fileID: 941896782}
   - component: {fileID: 941896781}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10590,7 +10590,7 @@ GameObject:
   - component: {fileID: 948334249}
   - component: {fileID: 948334251}
   - component: {fileID: 948334250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10686,7 +10686,7 @@ GameObject:
   - component: {fileID: 971400998}
   - component: {fileID: 971400997}
   - component: {fileID: 971400996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10807,7 +10807,7 @@ GameObject:
   - component: {fileID: 983301048}
   - component: {fileID: 983301050}
   - component: {fileID: 983301049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11032,7 +11032,7 @@ GameObject:
   - component: {fileID: 998038116}
   - component: {fileID: 998038118}
   - component: {fileID: 998038117}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11127,7 +11127,7 @@ GameObject:
   - component: {fileID: 1001479036}
   - component: {fileID: 1001479038}
   - component: {fileID: 1001479037}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11222,7 +11222,7 @@ GameObject:
   - component: {fileID: 1022674162}
   - component: {fileID: 1022674164}
   - component: {fileID: 1022674163}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11317,7 +11317,7 @@ GameObject:
   - component: {fileID: 1033926261}
   - component: {fileID: 1033926263}
   - component: {fileID: 1033926262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11413,7 +11413,7 @@ GameObject:
   - component: {fileID: 1046976164}
   - component: {fileID: 1046976163}
   - component: {fileID: 1046976162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11535,7 +11535,7 @@ GameObject:
   - component: {fileID: 1058383400}
   - component: {fileID: 1058383399}
   - component: {fileID: 1058383398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11655,7 +11655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065435075}
   - component: {fileID: 1065435074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BloodPattern2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11737,7 +11737,7 @@ GameObject:
   - component: {fileID: 1078510274}
   - component: {fileID: 1078510276}
   - component: {fileID: 1078510275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11832,7 +11832,7 @@ GameObject:
   - component: {fileID: 1090164403}
   - component: {fileID: 1090164405}
   - component: {fileID: 1090164404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11929,7 +11929,7 @@ GameObject:
   - component: {fileID: 1109540918}
   - component: {fileID: 1109540920}
   - component: {fileID: 1109540919}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: '[Item] Key'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12226,7 +12226,7 @@ GameObject:
   - component: {fileID: 1148343772}
   - component: {fileID: 1148343771}
   - component: {fileID: 1148343770}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12426,7 +12426,7 @@ GameObject:
   - component: {fileID: 1163219257}
   - component: {fileID: 1163219256}
   - component: {fileID: 1163219255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12712,7 +12712,7 @@ GameObject:
   - component: {fileID: 1166931893}
   - component: {fileID: 1166931895}
   - component: {fileID: 1166931894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13020,7 +13020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1183834494}
   - component: {fileID: 1183834495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13266,7 +13266,7 @@ GameObject:
   - component: {fileID: 1257096295}
   - component: {fileID: 1257096294}
   - component: {fileID: 1257096293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13388,7 +13388,7 @@ GameObject:
   - component: {fileID: 1301323503}
   - component: {fileID: 1301323502}
   - component: {fileID: 1301323501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13509,7 +13509,7 @@ GameObject:
   - component: {fileID: 1313994099}
   - component: {fileID: 1313994101}
   - component: {fileID: 1313994100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13605,7 +13605,7 @@ GameObject:
   - component: {fileID: 1324320099}
   - component: {fileID: 1324320100}
   - component: {fileID: 1324320101}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13856,7 +13856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1404943846}
   - component: {fileID: 1404943847}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13940,7 +13940,7 @@ GameObject:
   - component: {fileID: 1405928894}
   - component: {fileID: 1405928897}
   - component: {fileID: 1405928896}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14319,7 +14319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415218401}
   - component: {fileID: 1415218402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14393,7 +14393,7 @@ GameObject:
   - component: {fileID: 1462195024}
   - component: {fileID: 1462195023}
   - component: {fileID: 1462195022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14514,7 +14514,7 @@ GameObject:
   - component: {fileID: 1466165176}
   - component: {fileID: 1466165178}
   - component: {fileID: 1466165177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14936,7 +14936,7 @@ GameObject:
   - component: {fileID: 1497868454}
   - component: {fileID: 1497868453}
   - component: {fileID: 1497868452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15058,7 +15058,7 @@ GameObject:
   - component: {fileID: 1497907191}
   - component: {fileID: 1497907192}
   - component: {fileID: 1497907193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15147,7 +15147,7 @@ GameObject:
   - component: {fileID: 1527931887}
   - component: {fileID: 1527931889}
   - component: {fileID: 1527931888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15242,7 +15242,7 @@ GameObject:
   - component: {fileID: 1543501939}
   - component: {fileID: 1543501941}
   - component: {fileID: 1543501940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15415,7 +15415,7 @@ GameObject:
   - component: {fileID: 1550902984}
   - component: {fileID: 1550902986}
   - component: {fileID: 1550902985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15510,7 +15510,7 @@ GameObject:
   - component: {fileID: 1555792792}
   - component: {fileID: 1555792794}
   - component: {fileID: 1555792793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15606,7 +15606,7 @@ GameObject:
   - component: {fileID: 1558127918}
   - component: {fileID: 1558127917}
   - component: {fileID: 1558127916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15728,7 +15728,7 @@ GameObject:
   - component: {fileID: 1561013741}
   - component: {fileID: 1561013740}
   - component: {fileID: 1561013739}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16448,7 +16448,7 @@ GameObject:
   - component: {fileID: 1606242968}
   - component: {fileID: 1606242969}
   - component: {fileID: 1606242970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16537,7 +16537,7 @@ GameObject:
   - component: {fileID: 1657916415}
   - component: {fileID: 1657916417}
   - component: {fileID: 1657916416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16861,7 +16861,7 @@ GameObject:
   - component: {fileID: 1735726203}
   - component: {fileID: 1735726205}
   - component: {fileID: 1735726204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16957,7 +16957,7 @@ GameObject:
   - component: {fileID: 1767784940}
   - component: {fileID: 1767784939}
   - component: {fileID: 1767784938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17124,7 +17124,7 @@ GameObject:
   - component: {fileID: 1790121173}
   - component: {fileID: 1790121175}
   - component: {fileID: 1790121174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17383,7 +17383,7 @@ GameObject:
   - component: {fileID: 1828773625}
   - component: {fileID: 1828773624}
   - component: {fileID: 1828773623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17672,7 +17672,7 @@ GameObject:
   - component: {fileID: 1838532160}
   - component: {fileID: 1838532165}
   - component: {fileID: 1838532167}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17724,7 +17724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838532159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1405928893}
@@ -17881,7 +17881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b24502960f84552a6c8788912de6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 1
+  lives: 2
   deathSource: {fileID: 5208942686383812148, guid: 460693df2ece44e6ab0fc6648e718176,
     type: 3}
 --- !u!1 &1853538772
@@ -17895,7 +17895,7 @@ GameObject:
   - component: {fileID: 1853538773}
   - component: {fileID: 1853538775}
   - component: {fileID: 1853538774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17990,7 +17990,7 @@ GameObject:
   - component: {fileID: 1859442048}
   - component: {fileID: 1859442050}
   - component: {fileID: 1859442049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18085,7 +18085,7 @@ GameObject:
   - component: {fileID: 1863521596}
   - component: {fileID: 1863521598}
   - component: {fileID: 1863521597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18180,7 +18180,7 @@ GameObject:
   - component: {fileID: 1864865318}
   - component: {fileID: 1864865320}
   - component: {fileID: 1864865319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18275,7 +18275,7 @@ GameObject:
   - component: {fileID: 1869281459}
   - component: {fileID: 1869281461}
   - component: {fileID: 1869281460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18565,7 +18565,7 @@ GameObject:
   - component: {fileID: 1919800767}
   - component: {fileID: 1919800769}
   - component: {fileID: 1919800768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18824,7 +18824,7 @@ GameObject:
   - component: {fileID: 1928935441}
   - component: {fileID: 1928935440}
   - component: {fileID: 1928935439}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18944,7 +18944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941266801}
   - component: {fileID: 1941266802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19027,7 +19027,7 @@ GameObject:
   - component: {fileID: 1949379513}
   - component: {fileID: 1949379512}
   - component: {fileID: 1949379511}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19149,7 +19149,7 @@ GameObject:
   - component: {fileID: 1955723029}
   - component: {fileID: 1955723028}
   - component: {fileID: 1955723027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19323,7 +19323,7 @@ GameObject:
   - component: {fileID: 1980005428}
   - component: {fileID: 1980005427}
   - component: {fileID: 1980005426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19607,7 +19607,7 @@ GameObject:
   - component: {fileID: 1999128042}
   - component: {fileID: 1999128044}
   - component: {fileID: 1999128043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19703,7 +19703,7 @@ GameObject:
   - component: {fileID: 2007455182}
   - component: {fileID: 2007455181}
   - component: {fileID: 2007455180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19987,7 +19987,7 @@ GameObject:
   - component: {fileID: 2017854755}
   - component: {fileID: 2017854757}
   - component: {fileID: 2017854756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20083,7 +20083,7 @@ GameObject:
   - component: {fileID: 2032370582}
   - component: {fileID: 2032370581}
   - component: {fileID: 2032370580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20204,7 +20204,7 @@ GameObject:
   - component: {fileID: 2039519768}
   - component: {fileID: 2039519770}
   - component: {fileID: 2039519769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pavement (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20463,7 +20463,7 @@ GameObject:
   - component: {fileID: 2071082707}
   - component: {fileID: 2071082706}
   - component: {fileID: 2071082705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20585,7 +20585,7 @@ GameObject:
   - component: {fileID: 2084360084}
   - component: {fileID: 2084360083}
   - component: {fileID: 2084360082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20707,7 +20707,7 @@ GameObject:
   - component: {fileID: 2095160525}
   - component: {fileID: 2095160524}
   - component: {fileID: 2095160527}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20824,7 +20824,7 @@ GameObject:
   - component: {fileID: 2099373383}
   - component: {fileID: 2099373382}
   - component: {fileID: 2099373381}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20946,7 +20946,7 @@ GameObject:
   - component: {fileID: 2102278124}
   - component: {fileID: 2102278126}
   - component: {fileID: 2102278125}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21146,7 +21146,7 @@ GameObject:
   - component: {fileID: 2118333839}
   - component: {fileID: 2118333838}
   - component: {fileID: 2118333837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21268,7 +21268,7 @@ GameObject:
   - component: {fileID: 2124461989}
   - component: {fileID: 2124461988}
   - component: {fileID: 2124461987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

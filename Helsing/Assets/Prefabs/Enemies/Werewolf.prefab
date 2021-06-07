@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2127451306412523351}
   - component: {fileID: 4335793526953112484}
   - component: {fileID: 370639974621449538}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Werewolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2127451307095955742}
   - component: {fileID: 2127451307095955745}
   - component: {fileID: 2127451307095955740}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WerewolfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
