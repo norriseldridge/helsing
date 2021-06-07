@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Helsing.Client.World.Api;
 using UnityEngine;
 
@@ -8,16 +9,16 @@ namespace Helsing.Client.World
     {
         Dictionary<ITile, TransientPathNodeData> pathNodes = new Dictionary<ITile, TransientPathNodeData>();
 
-        public TransientPathNodeData FindNextPath(ITile start, ITile end, IList<ITile> ignore = null)
+        public async Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null)
         {
-            var (next, _) = SolvePath(start, end, ignore);
+            var (next, _) = await SolvePath(start, end, ignore);
             return next;
         }
 
-        public (TransientPathNodeData data, int distance) FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null) =>
-            SolvePath(start, end, ignore);
+        public async Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null) =>
+            await SolvePath(start, end, ignore);
 
-        private (TransientPathNodeData data, int distance) SolvePath(ITile start, ITile end, IList<ITile> ignore = null)
+        private Task<(TransientPathNodeData data, int distance)> SolvePath(ITile start, ITile end, IList<ITile> ignore = null)
         {
             Reset();
 
@@ -70,7 +71,7 @@ namespace Helsing.Client.World
 
             // we didn't find a path so there is no next step
             if (endNode.parent == null)
-                return (null, 0);
+                return Task.FromResult<(TransientPathNodeData data, int distance)>((null, 0));
 
             var count = 0;
             var next = endNode;
@@ -81,7 +82,7 @@ namespace Helsing.Client.World
                 ++count;
             }
 
-            return (next, count);
+            return Task.FromResult<(TransientPathNodeData data, int distance)>((next, count));
         }
 
         private float Heuristic(ITile current, ITile target)

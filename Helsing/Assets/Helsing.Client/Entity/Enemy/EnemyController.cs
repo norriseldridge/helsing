@@ -48,9 +48,9 @@ namespace Helsing.Client.Entity.Enemy
             for (var i = 0; i < moveCount; ++i)
             {
                 target = null;
-                if (CanSeePlayer())
+                if (await CanSeePlayer())
                 {
-                    var dest = pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
+                    var dest = await pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
                     if (dest != null)
                     {
                         target = dest.Tile;
@@ -70,11 +70,11 @@ namespace Helsing.Client.Entity.Enemy
                 enemyBlackboard.SetWillBeOccupied(target);
         }
 
-        private bool CanSeePlayer()
+        private async Task<bool> CanSeePlayer()
         {
             if (playerController != null && !playerController.IsHidden)
             {
-                var (path, dist) = pathFinder.FindNextPathAndDistance(tileMover.CurrentTile.Value, playerController.CurrentTile);
+                var (path, dist) = await pathFinder.FindNextPathAndDistance(tileMover.CurrentTile.Value, playerController.CurrentTile);
                 if (path != null)
                 {
                     return dist < 5;
