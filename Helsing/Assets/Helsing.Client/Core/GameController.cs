@@ -104,40 +104,34 @@ namespace Helsing.Client.Core
         {
             // deal damage to all living objects that are "in combat"
             var toDealDamage = new List<ILiving>();
-            for (var i = 0; i < livings.Count; ++i)
+            foreach (var attacker in livings)
             {
-                var iliving = livings[i].GetComponent<ILiving>();
-                if (iliving.Lives <= 0 || toDealDamage.Contains(iliving))
-                    continue;
+                var attackLiving = attacker.GetComponent<ILiving>();
+                var attackMover = attacker.GetComponent<ITileMover>();
+                var attackEnemy = attacker.GetComponent<IEnemy>();
 
-                for (var j = 0; j < livings.Count; ++j)
+                foreach (var defender in livings)
                 {
-                    if (i != j)
+                    if (attacker == defender)
+                        continue;
+
+                    var defendLiving = defender.GetComponent<ILiving>();
+                    var defendMover = defender.GetComponent<ITileMover>();
+                    var defendEnemy = defender.GetComponent<IEnemy>();
+
+                    if (attackEnemy != null && defendEnemy != null)
+                        continue;
+
+                    if (attackMover.CurrentTile.Value == defendMover.CurrentTile.Value)
                     {
-                        var imover = livings[i].GetComponent<ITileMover>();
-                        var jmover = livings[j].GetComponent<ITileMover>();
-
-                        var ienemy = livings[i].GetComponent<IEnemy>();
-                        var jenemy = livings[j].GetComponent<IEnemy>();
-
-                        if (imover == null || jmover == null)
-                        {
-                            Debug.LogError($"One of the TurnTakers attempting to deal damage is not an ITileMover! {imover} {jmover}");
-                            continue;
-                        }
-
-                        if (ienemy != null && jenemy != null)
-                            continue; // don't let enemies kill each other
-
-                        if (imover.CurrentTile.Value == jmover.CurrentTile.Value)
-                        {
-                            toDealDamage.Add(iliving);
-                        }
+                        toDealDamage.Add(attackLiving);
+                        toDealDamage.Add(defendLiving);
                     }
                 }
             }
 
-            toDealDamage.ForEach(l => l.DealDamage());
+            foreach (var toDamage in toDealDamage.Distinct())
+                toDamage.DealDamage();
         }
 
         private void CleanUpDead(List<GameObject> livings)
