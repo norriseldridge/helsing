@@ -9,6 +9,8 @@ using UniRx;
 using Zenject;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Enemy;
+using Helsing.Client.Fx.Api;
+using Helsing.Client.Fx;
 
 namespace Helsing.Client
 {
@@ -16,15 +18,27 @@ namespace Helsing.Client
     {
         public override void InstallBindings()
         {
+            // General
             Container.Bind<IMessageBroker>().FromInstance(MessageBroker.Default).AsSingle();
-            Container.Bind<IEnemyBlackboard>().FromInstance(new EnemyBlackboard()).AsSingle();
+
+            // Map
             Container.Bind<IPathFinder>().FromInstance(new PathFinder()).AsSingle();
-            Container.Bind<IPromptMessage>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ITileMap>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<IAudioPool>().FromComponentInHierarchy().AsSingle();
+
+            // Enemy
+            Container.Bind<IEnemyBlackboard>().FromInstance(new EnemyBlackboard()).AsSingle();
+
+            // Player
             Container.Bind<IInventory>().To<PlayerInventory>().AsSingle();
             Container.Bind<IPlayerController>().FromComponentInHierarchy().AsSingle();
+
+            // UI
+            Container.Bind<IPromptMessage>().FromComponentInHierarchy().AsSingle();
             Container.Bind<IDeadPopup>().FromComponentInHierarchy().AsSingle();
+
+            // Pooling
+            Container.Bind<IAudioPool>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IParticlePool>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

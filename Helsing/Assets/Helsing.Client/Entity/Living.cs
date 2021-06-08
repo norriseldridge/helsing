@@ -1,6 +1,7 @@
 ﻿using Helsing.Client.Entity.Api;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Helsing.Client.Entity
 {
@@ -10,19 +11,43 @@ namespace Helsing.Client.Entity
         int lives;
 
         [SerializeField]
+        GameObject hitSource;
+
+        [SerializeField]
         GameObject deathSource;
 
         public int Lives => livesAsObservable.Value;
         public IReadOnlyReactiveProperty<int> LivesAsObservable => livesAsObservable;
         IReactiveProperty<int> livesAsObservable;
+        DiContainer container;
 
-        private void Awake()
-        {
+        [Inject]
+        private void Inject(DiContainer container) =>
+            this.container = container;
+
+        private void Awake() =>
             livesAsObservable = new ReactiveProperty<int>(lives);
-            livesAsObservable
-                .Where(l => l <= 0)
-                .Subscribe(_ => OnDeath())
+
+        private void Start() =>
+            livesAsObservable.Skip(1)
+                .Pairwise((o, n) => o < n)
+                .Subscribe(l =>
+                {
+                    if (livesAsObservable.Value > 0)
+                        OnHit();
+                    else
+                        OnDeath();
+                })
                 .AddTo(this);
+
+        private void OnHit()
+        {
+            if (hitSource != null)
+            {
+                var temp = Instantiate(hitSource);
+                container.InjectGameObject(temp);
+                temp.transform.position = transform.position;
+            }
         }
 
         private void OnDeath()
@@ -30,6 +55,7 @@ namespace Helsing.Client.Entity
             if (deathSource != null)
             {
                 var temp = Instantiate(deathSource);
+                container.InjectGameObject(temp);
                 temp.transform.position = transform.position;
             }
             gameObject.SetActive(false);

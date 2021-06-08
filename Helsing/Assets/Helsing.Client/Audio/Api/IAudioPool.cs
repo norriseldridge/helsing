@@ -1,9 +1,7 @@
-﻿using UnityEngine;
+﻿using Helsing.Client.Api;
+using UnityEngine;
 
 namespace Helsing.Client.Audio.Api
 {
-    public interface IAudioPool
-    {
-        AudioSource Next();
-    }
+    public interface IAudioPool : IPool<AudioSource> { }
 }
