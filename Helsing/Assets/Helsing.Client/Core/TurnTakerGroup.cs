@@ -17,7 +17,8 @@ namespace Helsing.Client.Core
                 return;
 
             var tasks = valid.Select(t => t.TakeTurn());
-            await Task.WhenAll(tasks);
+            foreach (var t in tasks.ToList())
+                await t;
         }
     }
 }

@@ -8,5 +8,6 @@ namespace Helsing.Client.Entity.Enemy.Api
         IList<ITile> WillBeOccupied { get; }
         void Clear();
         void SetWillBeOccupied(ITile tile);
+        void ClearWillBeOccupied(ITile tile);
     }
 }

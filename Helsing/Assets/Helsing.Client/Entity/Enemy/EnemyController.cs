@@ -60,10 +60,12 @@ namespace Helsing.Client.Entity.Enemy
                 if (target == null)
                     target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
 
+                enemyBlackboard.SetWillBeOccupied(target);
                 view.FlipX = target.Position.x < transform.position.x;
                 view.State = EntityState.Walk;
                 await tileMover.MoveTo(target);
                 view.State = EntityState.Idle;
+                enemyBlackboard.ClearWillBeOccupied(target);
             }
 
             if (target != null)

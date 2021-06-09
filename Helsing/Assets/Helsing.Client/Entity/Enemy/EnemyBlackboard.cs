@@ -19,5 +19,7 @@ namespace Helsing.Client.Entity.Enemy
             if (!occupied.Contains(tile))
                 occupied.Add(tile);
         }
+
+        public void ClearWillBeOccupied(ITile tile) => occupied.Remove(tile);
     }
 }
