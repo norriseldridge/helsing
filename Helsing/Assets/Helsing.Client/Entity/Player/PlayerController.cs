@@ -24,7 +24,7 @@ namespace Helsing.Client.Entity.Player
             set => enabled = value;
         }
 
-        public bool IsHidden => CurrentTile.IsHidingSpot;
+        public bool IsHidden => CurrentTile?.IsHidingSpot ?? false;
 
         IMessageBroker broker;
         ILiving living;
