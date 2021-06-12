@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Helsing.Client.Core.Api;
+using Helsing.Client.Extensions;
 
 namespace Helsing.Client.Core
 {
@@ -16,9 +17,8 @@ namespace Helsing.Client.Core
             if (valid.Count() == 0)
                 return;
 
-            var tasks = valid.Select(t => t.TakeTurn());
-            foreach (var t in tasks.ToList())
-                await t;
+            var tasks = valid.Select(t => t.TakeTurn()).ToList();
+            await tasks.AsyncForEach(async t => await t);
         }
     }
 }
