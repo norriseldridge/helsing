@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 6539613121950596878}
   - component: {fileID: 6539613121950596879}
   - component: {fileID: 6539613121950596872}
+  - component: {fileID: 7626820244163694518}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -647,6 +648,17 @@ MonoBehaviour:
     type: 3}
   deathSource: {fileID: 5208942686383812148, guid: 460693df2ece44e6ab0fc6648e718176,
     type: 3}
+--- !u!210 &7626820244163694518
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539613121950596873}
+  m_Enabled: 1
+  m_SortingLayerID: -107417621
+  m_SortingLayer: 4
+  m_SortingOrder: 0
 --- !u!1 &6539613122148305055
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +709,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.81056225, b: 0.4764151, a: 1}
   m_Intensity: 0.6
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000671ebf4d4964ca2543d09fdcebef98f9
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -785,7 +797,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.81056225, b: 0.4764151, a: 1}
   m_Intensity: 0.27
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000671ebf4d4964ca2543d09fdcebef98f9
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
