@@ -29,7 +29,7 @@ namespace Helsing.Client.Entity
             livesAsObservable = new ReactiveProperty<int>(lives);
 
         private void Start() =>
-            livesAsObservable.Skip(1)
+            livesAsObservable
                 .Pairwise((o, n) => o < n)
                 .Subscribe(l =>
                 {

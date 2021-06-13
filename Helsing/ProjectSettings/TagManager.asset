@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - Tile
-  - TileDecal
-  - Item
-  - Enemy
-  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,6 +40,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tile
+    uniqueID: 1304370791
+    locked: 0
+  - name: TileDecal
+    uniqueID: 634020937
+    locked: 0
+  - name: Item
+    uniqueID: 3701461059
+    locked: 0
+  - name: Entity
+    uniqueID: 4187549675
     locked: 0
   - name: UI
     uniqueID: 1263832303

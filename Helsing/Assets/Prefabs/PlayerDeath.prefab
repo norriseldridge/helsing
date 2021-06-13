@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5208942686383812149}
   - component: {fileID: 5208942686383812150}
+  - component: {fileID: 6350823136737550081}
   m_Layer: 0
   m_Name: PlayerDeath
   m_TagString: Untagged
@@ -129,6 +130,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!210 &6350823136737550081
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208942686383812148}
+  m_Enabled: 1
+  m_SortingLayerID: 634020937
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &5208942686616471417
 GameObject:
   m_ObjectHideFlags: 0

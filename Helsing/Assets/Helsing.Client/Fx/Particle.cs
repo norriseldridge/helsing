@@ -34,6 +34,7 @@ namespace Helsing.Client.Fx
             this.lifeTime = lifeTime;
             initialLifeTime = lifeTime;
             rb.AddForce(velocity);
+            rb.AddTorque(Random.Range(-5, 5));
             spriteRenderer.color = color;
         }
 

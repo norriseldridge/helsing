@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
@@ -47,19 +48,7 @@ namespace Helsing.Client.Entity.Enemy
             ITile target = null;
             for (var i = 0; i < moveCount; ++i)
             {
-                target = null;
-                if (await CanSeePlayer())
-                {
-                    var dest = await pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
-                    if (dest != null)
-                    {
-                        target = dest.Tile;
-                    }
-                }
-
-                if (target == null)
-                    target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
-
+                target = await PickDestinationTile();
                 enemyBlackboard.SetWillBeOccupied(target);
                 view.FlipX = target.Position.x < transform.position.x;
                 view.State = EntityState.Walk;
@@ -84,6 +73,23 @@ namespace Helsing.Client.Entity.Enemy
             }
 
             return false;
+        }
+
+        private async Task<ITile> PickDestinationTile()
+        {
+            ITile target = null;
+            if (await CanSeePlayer())
+            {
+                var dest = await pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
+                if (dest != null)
+                {
+                    target = dest.Tile;
+                }
+            }
+
+            if (target == null)
+                target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
+            return target;
         }
     }
 }
