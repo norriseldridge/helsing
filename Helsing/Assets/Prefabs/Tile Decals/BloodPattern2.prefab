@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4007258554217660999}
   - component: {fileID: 4007258554217660998}
   - component: {fileID: 4007258554217660992}
+  - component: {fileID: -1414325867485912303}
   m_Layer: 9
   m_Name: BloodPattern2
   m_TagString: Untagged
@@ -93,3 +94,16 @@ SortingGroup:
   m_SortingLayerID: 634020937
   m_SortingLayer: 2
   m_SortingOrder: 0
+--- !u!114 &-1414325867485912303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007258554217660997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c116c7c24b641caad771392cdf9531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTag: TileDecalsParent

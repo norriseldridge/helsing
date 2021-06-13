@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2127451306412523351}
   - component: {fileID: 4335793526953112484}
   - component: {fileID: 370639974621449538}
+  - component: {fileID: -1072526541803115140}
   m_Layer: 11
   m_Name: Werewolf
   m_TagString: Untagged
@@ -75,8 +76,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 1
+  hitSource: {fileID: 0}
   deathSource: {fileID: 7096307843951968356, guid: c77883f38c4e84083be520e4ac4ee4ea,
     type: 3}
+--- !u!114 &-1072526541803115140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127451306412523353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c116c7c24b641caad771392cdf9531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTag: EnemiesParent
 --- !u!1 &2127451307095955744
 GameObject:
   m_ObjectHideFlags: 0

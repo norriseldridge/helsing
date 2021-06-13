@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1386571562287882674}
   - component: {fileID: 7485810996315909325}
   - component: {fileID: 4694040918546709509}
+  - component: {fileID: -1213357626374023054}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -107,3 +108,16 @@ SortingGroup:
   m_SortingLayerID: 1304370791
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &-1213357626374023054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094204867112387571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c116c7c24b641caad771392cdf9531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTag: TilesParent

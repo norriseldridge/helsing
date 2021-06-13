@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8043992745659166997}
   - component: {fileID: 8043992745659166996}
   - component: {fileID: 8043992745659166995}
+  - component: {fileID: -2397927090706324881}
   m_Layer: 8
   m_Name: DoorTile
   m_TagString: Untagged
@@ -135,6 +136,19 @@ SortingGroup:
   m_SortingLayerID: 1304370791
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &-2397927090706324881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043992745659166998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c116c7c24b641caad771392cdf9531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTag: TilesParent
 --- !u!1 &8043992747229199284
 GameObject:
   m_ObjectHideFlags: 0
