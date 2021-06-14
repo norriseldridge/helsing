@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
-using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
 using UnityEngine;
 using Zenject;
@@ -26,17 +24,18 @@ namespace Helsing.Client.Entity.Enemy
 
         int turnIndex = 0;
         ITileMover tileMover;
-        IPathFinder pathFinder;
+        IFactory<IEnemyLogic> enemyLogicFactory;
+        IEnemyLogic enemyLogic;
         IEnemyBlackboard enemyBlackboard;
-        IPlayerController playerController;
 
         [Inject]
-        private void Inject(IPathFinder pathFinder, IEnemyBlackboard enemyBlackboard, IPlayerController playerController) =>
-            (this.pathFinder, this.enemyBlackboard, this.playerController) = (pathFinder, enemyBlackboard, playerController);
+        private void Inject(IFactory<IEnemyLogic> enemyLogicFactory, IEnemyBlackboard enemyBlackboard) =>
+            (this.enemyLogicFactory, this.enemyBlackboard) = (enemyLogicFactory, enemyBlackboard);
 
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
+            enemyLogic = enemyLogicFactory.Create();
         }
 
         public async Task TakeTurn()
@@ -48,7 +47,7 @@ namespace Helsing.Client.Entity.Enemy
             ITile target = null;
             for (var i = 0; i < moveCount; ++i)
             {
-                target = await PickDestinationTile();
+                target = await enemyLogic.PickDestinationTile(tileMover.CurrentTile.Value);
                 enemyBlackboard.SetWillBeOccupied(target);
                 view.FlipX = target.Position.x < transform.position.x;
                 view.State = EntityState.Walk;
@@ -59,37 +58,6 @@ namespace Helsing.Client.Entity.Enemy
 
             if (target != null)
                 enemyBlackboard.SetWillBeOccupied(target);
-        }
-
-        private async Task<bool> CanSeePlayer()
-        {
-            if (playerController != null && !playerController.IsHidden)
-            {
-                var (path, dist) = await pathFinder.FindNextPathAndDistance(tileMover.CurrentTile.Value, playerController.CurrentTile);
-                if (path != null)
-                {
-                    return dist < 5;
-                }
-            }
-
-            return false;
-        }
-
-        private async Task<ITile> PickDestinationTile()
-        {
-            ITile target = null;
-            if (await CanSeePlayer())
-            {
-                var dest = await pathFinder.FindNextPath(tileMover.CurrentTile.Value, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
-                if (dest != null)
-                {
-                    target = dest.Tile;
-                }
-            }
-
-            if (target == null)
-                target = tileMover.CurrentTile.Value.GetRandomNeighbor(true);
-            return target;
         }
     }
 }
