@@ -3,16 +3,31 @@ using Zenject;
 
 namespace Helsing.Client.Entity.Enemy
 {
-    public class EnemyLogicFactory : IFactory<IEnemyLogic>
+    public class EnemyLogicPlaceholderFactory : PlaceholderFactory<EnemyLogicType, IEnemyLogic> { }
+
+    public class EnemyLogicFactory : IFactory<EnemyLogicType, IEnemyLogic>
     {
         private DiContainer container;
 
         public EnemyLogicFactory(DiContainer container) => this.container = container;
 
         // TODO pass in the "type"
-        public IEnemyLogic Create()
+        public IEnemyLogic Create(EnemyLogicType type)
         {
-            IEnemyLogic enemyLogic = new BasicEnemyLogic();
+            IEnemyLogic enemyLogic;
+
+            switch (type)
+            {
+                case EnemyLogicType.Werewolf:
+                    enemyLogic = new WerewolfLogic();
+                    break;
+
+                case EnemyLogicType.Basic:
+                default:
+                    enemyLogic = new BasicEnemyLogic();
+                    break;
+            }
+
             container.Inject(enemyLogic);
             return enemyLogic;
         }

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 8737948071228804591}
+  enemyType: 0
   turnDelay: 2
   moveCount: 1
 --- !u!114 &8737948071064422426

@@ -10,7 +10,6 @@ using Zenject;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Enemy;
 using Helsing.Client.Fx.Api;
-using Helsing.Client.Fx;
 
 namespace Helsing.Client
 {
@@ -27,7 +26,7 @@ namespace Helsing.Client
 
             // Enemy
             Container.Bind<IEnemyBlackboard>().FromInstance(new EnemyBlackboard()).AsSingle();
-            Container.Bind<IFactory<IEnemyLogic>>().To<EnemyLogicFactory>().AsSingle();
+            Container.Bind<EnemyLogicFactory>().To<EnemyLogicFactory>().AsSingle();
 
             // Player
             Container.Bind<IInventory>().To<PlayerInventory>().AsSingle();

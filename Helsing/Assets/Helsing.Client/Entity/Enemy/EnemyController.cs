@@ -15,6 +15,9 @@ namespace Helsing.Client.Entity.Enemy
         EntityView view;
 
         [SerializeField]
+        EnemyLogicType enemyType;
+
+        [SerializeField]
         [Min(0)]
         int turnDelay;
 
@@ -24,18 +27,18 @@ namespace Helsing.Client.Entity.Enemy
 
         int turnIndex = 0;
         ITileMover tileMover;
-        IFactory<IEnemyLogic> enemyLogicFactory;
+        EnemyLogicFactory enemyLogicFactory;
         IEnemyLogic enemyLogic;
         IEnemyBlackboard enemyBlackboard;
 
         [Inject]
-        private void Inject(IFactory<IEnemyLogic> enemyLogicFactory, IEnemyBlackboard enemyBlackboard) =>
+        private void Inject(EnemyLogicFactory enemyLogicFactory, IEnemyBlackboard enemyBlackboard) =>
             (this.enemyLogicFactory, this.enemyBlackboard) = (enemyLogicFactory, enemyBlackboard);
 
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
-            enemyLogic = enemyLogicFactory.Create();
+            enemyLogic = enemyLogicFactory.Create(enemyType);
         }
 
         public async Task TakeTurn()
@@ -48,12 +51,10 @@ namespace Helsing.Client.Entity.Enemy
             for (var i = 0; i < moveCount; ++i)
             {
                 target = await enemyLogic.PickDestinationTile(tileMover.CurrentTile.Value);
-                enemyBlackboard.SetWillBeOccupied(target);
                 view.FlipX = target.Position.x < transform.position.x;
                 view.State = EntityState.Walk;
                 await tileMover.MoveTo(target);
                 view.State = EntityState.Idle;
-                enemyBlackboard.ClearWillBeOccupied(target);
             }
 
             if (target != null)
