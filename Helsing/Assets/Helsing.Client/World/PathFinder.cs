@@ -9,16 +9,16 @@ namespace Helsing.Client.World
     {
         Dictionary<ITile, TransientPathNodeData> pathNodes = new Dictionary<ITile, TransientPathNodeData>();
 
-        public async Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null)
+        public async Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true)
         {
-            var (next, _) = await SolvePath(start, end, ignore);
+            var (next, _) = await SolvePath(start, end, ignore, onlyFloors);
             return next;
         }
 
-        public async Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null) =>
-            await SolvePath(start, end, ignore);
+        public async Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true) =>
+            await SolvePath(start, end, ignore, onlyFloors);
 
-        private Task<(TransientPathNodeData data, int distance)> SolvePath(ITile start, ITile end, IList<ITile> ignore = null)
+        private Task<(TransientPathNodeData data, int distance)> SolvePath(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true)
         {
             Reset();
 
@@ -55,7 +55,7 @@ namespace Helsing.Client.World
                         continue;
 
                     var neighbor = GetPathNode(n);
-                    if (!neighbor.isVisited && n.IsFloor)
+                    if (!neighbor.isVisited && (!onlyFloors || (onlyFloors && n.IsFloor)))
                         toTest.Add(neighbor);
 
                     float possibleLowerLocalGoal = current.localGoal + Heuristic(current.Tile, neighbor.Tile);

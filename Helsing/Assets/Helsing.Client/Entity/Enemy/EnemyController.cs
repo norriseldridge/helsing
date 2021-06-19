@@ -44,7 +44,7 @@ namespace Helsing.Client.Entity.Enemy
         public async Task TakeTurn()
         {
             ++turnIndex;
-            if (turnIndex < turnDelay) return;
+            if (turnIndex <= turnDelay) return;
             turnIndex = 0;
 
             ITile target = null;

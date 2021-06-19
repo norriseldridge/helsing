@@ -48,10 +48,8 @@ namespace Helsing.Client.Entity.Player
         private void Inject(IAudioPool audioPool) =>
             this.audioPool = audioPool;
 
-        private void Start()
-        {
-            animator.runtimeAnimatorController = genderControllers.Where(g => g.gender == gender).First().controller;
-        }
+        private void Start() =>
+            animator.runtimeAnimatorController = genderControllers.Where(g => g.gender == gender).FirstOrDefault().controller;
 
         private void Update()
         {

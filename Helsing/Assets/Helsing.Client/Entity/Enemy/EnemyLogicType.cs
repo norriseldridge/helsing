@@ -3,6 +3,7 @@
     public enum EnemyLogicType
     {
         Basic,
-        Werewolf
+        Werewolf,
+        Ghost
     }
 }

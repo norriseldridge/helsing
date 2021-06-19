@@ -22,6 +22,10 @@ namespace Helsing.Client.Entity.Enemy
                     enemyLogic = new WerewolfLogic();
                     break;
 
+                case EnemyLogicType.Ghost:
+                    enemyLogic = new GhostLogic();
+                    break;
+
                 case EnemyLogicType.Basic:
                 default:
                     enemyLogic = new BasicEnemyLogic();

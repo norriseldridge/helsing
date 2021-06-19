@@ -5,7 +5,7 @@ namespace Helsing.Client.World.Api
 {
     public interface IPathFinder
     {
-        Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null);
-        Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null);
+        Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true);
+        Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true);
     }
 }
