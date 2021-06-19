@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -131,6 +132,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -155,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2311659948842064771, guid: 87b4fa47b2636449383483eec0678b6e,
+  m_Sprite: {fileID: 8290976640666328879, guid: b2d81094c7d994a5988bba994ab46140,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 6539613120909556138}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3bb2c4549f1d4b7b905bc161099def7, type: 2}
+  m_Controller: {fileID: 9100000, guid: ab6a89c8869df401384b601fb51688c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -300,6 +302,12 @@ MonoBehaviour:
   step: {fileID: 8300000, guid: d31ec440b6e094db884211c3c0f0920b, type: 3}
   stepDelay: 0.5
   item: {fileID: 6539613121947915881}
+  gender: 0
+  genderControllers:
+  - gender: 0
+    controller: {fileID: 9100000, guid: a3bb2c4549f1d4b7b905bc161099def7, type: 2}
+  - gender: 1
+    controller: {fileID: 9100000, guid: ab6a89c8869df401384b601fb51688c1, type: 2}
 --- !u!1 &6539613121947915882
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +358,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

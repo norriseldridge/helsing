@@ -19,6 +19,7 @@ namespace Helsing.Client.Entity
         public int Lives => livesAsObservable.Value;
         public IReadOnlyReactiveProperty<int> LivesAsObservable => livesAsObservable;
         IReactiveProperty<int> livesAsObservable;
+        int oldLives;
         DiContainer container;
 
         [Inject]
@@ -28,17 +29,20 @@ namespace Helsing.Client.Entity
         private void Awake() =>
             livesAsObservable = new ReactiveProperty<int>(lives);
 
-        private void Start() =>
-            livesAsObservable
-                .Pairwise((o, n) => o < n)
+        private void Start()
+        {
+            oldLives = lives;
+
+            livesAsObservable.Skip(1)
                 .Subscribe(l =>
                 {
-                    if (livesAsObservable.Value > 0)
+                    if (l > 0 && l < oldLives)
                         OnHit();
-                    else
+                    else if (l <= 0)
                         OnDeath();
-                })
-                .AddTo(this);
+                    oldLives = l;
+                }).AddTo(this);
+        }
 
         private void OnHit()
         {

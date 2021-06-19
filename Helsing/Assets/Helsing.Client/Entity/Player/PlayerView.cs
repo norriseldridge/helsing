@@ -1,10 +1,21 @@
 ﻿using Helsing.Client.Audio.Api;
 using Helsing.Client.Item;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
 namespace Helsing.Client.Entity.Player
 {
+    public enum Gender { Male, Female }
+
+    [System.Serializable]
+    public struct GenderControllerPair
+    {
+        public Gender gender;
+        public RuntimeAnimatorController controller;
+    }
+
     public class PlayerView : EntityView
     {
         public bool Visible
@@ -22,6 +33,13 @@ namespace Helsing.Client.Entity.Player
         [SerializeField]
         ItemView item;
 
+        [Header("Gender")]
+        [SerializeField]
+        Gender gender;
+
+        [SerializeField]
+        List<GenderControllerPair> genderControllers;
+
         IAudioPool audioPool;
         float currentStepDelay;
         int stepIndex;
@@ -29,6 +47,11 @@ namespace Helsing.Client.Entity.Player
         [Inject]
         private void Inject(IAudioPool audioPool) =>
             this.audioPool = audioPool;
+
+        private void Start()
+        {
+            animator.runtimeAnimatorController = genderControllers.Where(g => g.gender == gender).First().controller;
+        }
 
         private void Update()
         {

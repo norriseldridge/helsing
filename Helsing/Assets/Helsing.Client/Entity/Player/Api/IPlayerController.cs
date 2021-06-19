@@ -10,5 +10,6 @@ namespace Helsing.Client.Entity.Player.Api
         ITile CurrentTile { get; }
         bool Enabled { get; set; }
         bool IsHidden { get; }
+        bool Visibility { get; set; }
     }
 }

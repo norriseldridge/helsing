@@ -24,6 +24,12 @@ namespace Helsing.Client.Entity.Player
             set => enabled = value;
         }
 
+        public bool Visibility
+        {
+            get => view.Visible;
+            set => view.Visible = value;
+        }
+
         public bool IsHidden => CurrentTile?.IsHidingSpot ?? false;
 
         IMessageBroker broker;

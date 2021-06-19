@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Helsing.Client.Entity
 {
@@ -9,7 +8,7 @@ namespace Helsing.Client.Entity
         SpriteRenderer view;
 
         [SerializeField]
-        Animator animator;
+        protected Animator animator;
 
         public bool FlipX
         {

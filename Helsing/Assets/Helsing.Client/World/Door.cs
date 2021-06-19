@@ -94,8 +94,9 @@ namespace Helsing.Client.World
             // disable the door because we're done and moving on to the next level
             enabled = false;
 
-            // disable the player as well
+            // disable & hide the player as well
             playerController.Enabled = false;
+            playerController.Visibility = false;
 
             // wait for the fade
             broker.Publish(new FadeData(true));
