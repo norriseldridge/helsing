@@ -18,13 +18,19 @@ namespace Helsing.Client.Entity.Enemy
                 logicCache[logicType] = logicFactory.Create(logicType);
         }
 
-        public async Task<IEnumerable<ITile>> GetMoves(EnemyLogicType logicType, int maxMoves, ITile startingTile)
+        public async Task EveryTurn(EnemyLogicType logicType, IEnemy enemy)
+        {
+            var logic = logicCache[logicType];
+            await logic.EveryTurn(enemy);
+        }
+
+        public async Task<IEnumerable<ITile>> GetMoves(EnemyLogicType logicType, IEnemy enemy)
         {
             var logic = logicCache[logicType];
             
-            var currentTile = startingTile;
+            var currentTile = enemy.TileMover.CurrentTile.Value;
             var moves = new List<ITile>();
-            for (var i = 0; i < maxMoves; ++i)
+            for (var i = 0; i < enemy.MaxMoves; ++i)
             {
                 currentTile = await logic.PickDestinationTile(currentTile);
                 if (currentTile != null && !moves.Contains(currentTile))

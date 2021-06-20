@@ -4,6 +4,7 @@
     {
         Basic,
         Werewolf,
-        Ghost
+        Ghost,
+        HunchBack
     }
 }

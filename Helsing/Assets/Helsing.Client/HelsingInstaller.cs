@@ -27,6 +27,7 @@ namespace Helsing.Client
             // Enemy
             Container.Bind<IEnemyLogicFactory>().To<EnemyLogicFactory>().AsSingle();
             Container.Bind<IEnemyCoordinator>().To<EnemyCoordinator>().AsSingle();
+            Container.Bind<IEnemyControllerBlackboard>().To<EnemyControllerBlackboard>().AsTransient();
 
             // Player
             Container.Bind<IInventory>().To<PlayerInventory>().AsSingle();

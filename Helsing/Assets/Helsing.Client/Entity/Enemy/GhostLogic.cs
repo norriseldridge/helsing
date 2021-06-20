@@ -21,6 +21,8 @@ namespace Helsing.Client.Entity.Enemy
             this.pathFinder.OnlyFloors = false;
         }
 
+        public Task EveryTurn(IEnemy enemy) => Task.CompletedTask;
+
         public async Task<ITile> PickDestinationTile(ITile currentTile)
         {
             var dest = await pathFinder.FindNextPath(currentTile, playerController.CurrentTile);

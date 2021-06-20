@@ -21,6 +21,8 @@ namespace Helsing.Client.Entity.Enemy
             this.pathFinder.OnlyFloors = true;
         }
 
+        public Task EveryTurn(IEnemy enemy) => Task.CompletedTask;
+
         private async Task<bool> CanSeePlayer(ITile currentTile)
         {
             if (playerController != null && !playerController.IsHidden)

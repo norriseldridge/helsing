@@ -6,6 +6,7 @@ namespace Helsing.Client.Entity.Enemy.Api
 {
     public interface IEnemyCoordinator
     {
-        public Task<IEnumerable<ITile>> GetMoves(EnemyLogicType logicType, int maxMoves, ITile startingTile);
+        public Task EveryTurn(EnemyLogicType logicType, IEnemy enemy);
+        public Task<IEnumerable<ITile>> GetMoves(EnemyLogicType logicType, IEnemy enemy);
     }
 }

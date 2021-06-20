@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
@@ -26,33 +26,51 @@ namespace Helsing.Client.Entity.Enemy
         [Min(1)]
         int moveCount;
 
+        [SerializeField]
+        List<EnemyControllerBlackboardPair> blackboardValues;
+
         public EnemyLogicType EnemyLogicType => enemyType;
+        public ITileMover TileMover => tileMover;
+        public int MaxMoves => moveCount;
+        public IEnemyControllerBlackboard Blackboard => blackboard;
 
         int turnIndex = 0;
         ITileMover tileMover;
         IEnemyCoordinator enemyCoordinator;
+        IEnemyControllerBlackboard blackboard;
 
         [Inject]
-        private void Inject(IEnemyCoordinator enemyCoordinator) =>
-            this.enemyCoordinator = enemyCoordinator;
+        private void Inject(IEnemyCoordinator enemyCoordinator, IEnemyControllerBlackboard blackboard) =>
+            (this.enemyCoordinator, this.blackboard) = (enemyCoordinator, blackboard);
 
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
         }
 
+        private void Start()
+        {
+            blackboard.Items = blackboardValues;
+        }
+
         public async Task TakeTurn()
         {
+            await enemyCoordinator.EveryTurn(enemyType, this);
+
             ++turnIndex;
             if (turnIndex <= turnDelay) return;
             turnIndex = 0;
 
-            var moves = await enemyCoordinator.GetMoves(enemyType, moveCount, tileMover.CurrentTile.Value);
+            var moves = await enemyCoordinator.GetMoves(enemyType, this);
             view.State = EntityState.Walk;
             await moves.AsyncForEach(async m =>
             {
-                view.FlipX = m.Position.x < transform.position.x;
-                await tileMover.MoveTo(m);
+                if (this == null)
+                    return;
+                if (view != null)
+                    view.FlipX = m.Position.x < transform.position.x;
+                if (tileMover != null)
+                    await tileMover.MoveTo(m);
             });
             view.State = EntityState.Idle;
         }

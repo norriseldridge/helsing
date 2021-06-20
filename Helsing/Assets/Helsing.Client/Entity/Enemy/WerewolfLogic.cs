@@ -19,6 +19,8 @@ namespace Helsing.Client.Entity.Enemy
         private void Inject(IPlayerController playerController) =>
             (this.playerController) = (playerController);
 
+        public Task EveryTurn(IEnemy enemy) => Task.CompletedTask;
+
         public Task<ITile> PickDestinationTile(ITile currentTile)
         {
             directionCountDown--;
