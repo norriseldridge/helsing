@@ -29,6 +29,9 @@ namespace Helsing.Client.World
             startNode.localGoal = 0;
             startNode.globalGoal = Heuristic(start, end);
 
+            if (start == end)
+                return Task.FromResult<(TransientPathNodeData data, int distance)>((startNode, 0));
+
             var endNode = GetPathNode(end);
 
             var toTest = new List<TransientPathNodeData>();

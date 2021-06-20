@@ -21,7 +21,6 @@ namespace Helsing.Client.Entity.Enemy
         {
             var logic = logicCache[logicType];
             
-
             var currentTile = startingTile;
             var moves = new List<ITile>();
             for (var i = 0; i < maxMoves; ++i)
