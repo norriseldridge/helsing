@@ -13,5 +13,6 @@ namespace Helsing.Client.World.Api
         bool IsFloor { get; }
         bool IsHidingSpot { get; }
         IEnumerable<GameObject> GetGameObjectsOnTile();
+        IEnumerable<GameObject> GetGameObjectsOnTileOfType<T>();
     }
 }

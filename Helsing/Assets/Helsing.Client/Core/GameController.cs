@@ -20,15 +20,13 @@ namespace Helsing.Client.Core
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
         IMessageBroker broker;
         IDeadPopup deadPopup;
-        IEnemyBlackboard enemyBlackboard;
         IPlayerController playController;
 
         [Inject]
         void Inject(IMessageBroker broker,
             IDeadPopup deadPopup,
-            IEnemyBlackboard enemyBlackboard,
             IPlayerController playController) =>
-            (this.broker, this.deadPopup, this.enemyBlackboard, this.playController) = (broker, deadPopup, enemyBlackboard, playController);
+            (this.broker, this.deadPopup, this.playController) = (broker, deadPopup, playController);
 
         private void Start()
         {
@@ -67,7 +65,6 @@ namespace Helsing.Client.Core
             if (!isPerformingTurns)
             {
                 PerformTurns();
-                enemyBlackboard.Clear();
             }
         }
 

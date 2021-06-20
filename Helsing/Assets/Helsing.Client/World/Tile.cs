@@ -28,7 +28,7 @@ namespace Helsing.Client.World
 
         public void Start()
         {
-            hidingSpot = GetGameObjectsOnTile().Where(g => g.GetComponent<IHidingSpot>() != null).Count() > 0;
+            hidingSpot = GetGameObjectsOnTileOfType<IHidingSpot>().Count() > 0;
         }
 
         public void FindNeighbors(IEnumerable<ITile> tiles) => FindNeighbors(tiles as List<Tile>);
@@ -64,6 +64,9 @@ namespace Helsing.Client.World
                 return Enumerable.Empty<GameObject>();
             return FindObjectsOfType<GameObject>().Where(g => g != null && g != gameObject && Vector2.Distance(g.transform.position, transform.position) < 0.1f);
         }
+
+        public IEnumerable<GameObject> GetGameObjectsOnTileOfType<T>() =>
+            GetGameObjectsOnTile().Where(g => g.GetComponent<T>() != null);
 
 #if UNITY_EDITOR
         private void Update()

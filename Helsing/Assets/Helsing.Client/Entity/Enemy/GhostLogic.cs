@@ -10,15 +10,18 @@ namespace Helsing.Client.Entity.Enemy
     {
         IPlayerController playerController;
         IPathFinder pathFinder;
-        IEnemyBlackboard enemyBlackboard;
 
         [Inject]
-        private void Inject(IPlayerController playerController, IPathFinder pathFinder, IEnemyBlackboard enemyBlackboard) =>
-            (this.playerController, this.pathFinder, this.enemyBlackboard) = (playerController, pathFinder, enemyBlackboard);
+        private void Inject(IPlayerController playerController, IPathFinder pathFinder)
+        {
+            this.playerController = playerController;
+            this.pathFinder = pathFinder;
+            this.pathFinder.OnlyFloors = false;
+        }
 
         public async Task<ITile> PickDestinationTile(ITile currentTile)
         {
-            var dest = await pathFinder.FindNextPath(currentTile, playerController.CurrentTile, enemyBlackboard.WillBeOccupied, false);
+            var dest = await pathFinder.FindNextPath(currentTile, playerController.CurrentTile);
             return dest.Tile;
         }
     }

@@ -7,18 +7,21 @@ namespace Helsing.Client.World
 {
     public class PathFinder : IPathFinder
     {
+        public IList<ITile> Ignore { get; set; }
+        public bool OnlyFloors { get; set; }
+
         Dictionary<ITile, TransientPathNodeData> pathNodes = new Dictionary<ITile, TransientPathNodeData>();
 
-        public async Task<TransientPathNodeData> FindNextPath(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true)
+        public async Task<TransientPathNodeData> FindNextPath(ITile start, ITile end)
         {
-            var (next, _) = await SolvePath(start, end, ignore, onlyFloors);
+            var (next, _) = await SolvePath(start, end);
             return next;
         }
 
-        public async Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true) =>
-            await SolvePath(start, end, ignore, onlyFloors);
+        public async Task<(TransientPathNodeData data, int distance)> FindNextPathAndDistance(ITile start, ITile end) =>
+            await SolvePath(start, end);
 
-        private Task<(TransientPathNodeData data, int distance)> SolvePath(ITile start, ITile end, IList<ITile> ignore = null, bool onlyFloors = true)
+        private Task<(TransientPathNodeData data, int distance)> SolvePath(ITile start, ITile end)
         {
             Reset();
 
@@ -51,11 +54,11 @@ namespace Helsing.Client.World
 
                 foreach (var n in current.Tile.Neighbors)
                 {
-                    if (ignore != null && ignore.Contains(n))
+                    if (Ignore != null && Ignore.Contains(n))
                         continue;
 
                     var neighbor = GetPathNode(n);
-                    if (!neighbor.isVisited && (!onlyFloors || (onlyFloors && n.IsFloor)))
+                    if (!neighbor.isVisited && (!OnlyFloors || (OnlyFloors && n.IsFloor)))
                         toTest.Add(neighbor);
 
                     float possibleLowerLocalGoal = current.localGoal + Heuristic(current.Tile, neighbor.Tile);

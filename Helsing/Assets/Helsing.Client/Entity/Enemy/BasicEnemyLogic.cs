@@ -10,11 +10,14 @@ namespace Helsing.Client.Entity.Enemy
     {
         IPlayerController playerController;
         IPathFinder pathFinder;
-        IEnemyBlackboard enemyBlackboard;
 
         [Inject]
-        private void Inject(IPlayerController playerController, IPathFinder pathFinder, IEnemyBlackboard enemyBlackboard) =>
-            (this.playerController, this.pathFinder, this.enemyBlackboard) = (playerController, pathFinder, enemyBlackboard);
+        private void Inject(IPlayerController playerController, IPathFinder pathFinder)
+        {
+            this.playerController = playerController;
+            this.pathFinder = pathFinder;
+            this.pathFinder.OnlyFloors = true;
+        }
 
         private async Task<bool> CanSeePlayer(ITile currentTile)
         {
@@ -35,7 +38,7 @@ namespace Helsing.Client.Entity.Enemy
             ITile target = null;
             if (await CanSeePlayer(currentTile))
             {
-                var dest = await pathFinder.FindNextPath(currentTile, playerController.CurrentTile, enemyBlackboard.WillBeOccupied);
+                var dest = await pathFinder.FindNextPath(currentTile, playerController.CurrentTile);
                 if (dest != null)
                 {
                     target = dest.Tile;

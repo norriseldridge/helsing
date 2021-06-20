@@ -5,13 +5,12 @@ namespace Helsing.Client.Entity.Enemy
 {
     public class EnemyLogicPlaceholderFactory : PlaceholderFactory<EnemyLogicType, IEnemyLogic> { }
 
-    public class EnemyLogicFactory : IFactory<EnemyLogicType, IEnemyLogic>
+    public class EnemyLogicFactory : IEnemyLogicFactory
     {
         private DiContainer container;
 
         public EnemyLogicFactory(DiContainer container) => this.container = container;
 
-        // TODO pass in the "type"
         public IEnemyLogic Create(EnemyLogicType type)
         {
             IEnemyLogic enemyLogic;

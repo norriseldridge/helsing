@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
-using Helsing.Client.World.Api;
 using UnityEngine;
 using Zenject;
 
@@ -27,18 +27,15 @@ namespace Helsing.Client.Entity.Enemy
 
         int turnIndex = 0;
         ITileMover tileMover;
-        EnemyLogicFactory enemyLogicFactory;
-        IEnemyLogic enemyLogic;
-        IEnemyBlackboard enemyBlackboard;
+        IEnemyCoordinator enemyCoordinator;
 
         [Inject]
-        private void Inject(EnemyLogicFactory enemyLogicFactory, IEnemyBlackboard enemyBlackboard) =>
-            (this.enemyLogicFactory, this.enemyBlackboard) = (enemyLogicFactory, enemyBlackboard);
+        private void Inject(IEnemyCoordinator enemyCoordinator) =>
+            this.enemyCoordinator = enemyCoordinator;
 
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
-            enemyLogic = enemyLogicFactory.Create(enemyType);
         }
 
         public async Task TakeTurn()
@@ -47,18 +44,14 @@ namespace Helsing.Client.Entity.Enemy
             if (turnIndex <= turnDelay) return;
             turnIndex = 0;
 
-            ITile target = null;
-            for (var i = 0; i < moveCount; ++i)
+            var moves = await enemyCoordinator.GetMoves(enemyType, moveCount, tileMover.CurrentTile.Value);
+            view.State = EntityState.Walk;
+            foreach (var move in moves)
             {
-                target = await enemyLogic.PickDestinationTile(tileMover.CurrentTile.Value);
-                view.FlipX = target.Position.x < transform.position.x;
-                view.State = EntityState.Walk;
-                await tileMover.MoveTo(target);
-                view.State = EntityState.Idle;
+                view.FlipX = move.Position.x < transform.position.x;
+                await tileMover.MoveTo(move);
             }
-
-            if (target != null)
-                enemyBlackboard.SetWillBeOccupied(target);
+            view.State = EntityState.Idle;
         }
     }
 }
