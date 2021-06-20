@@ -13,6 +13,8 @@ namespace Helsing.Client.Entity.Enemy
         Direction lastDirection;
         int directionCountDown;
 
+        public bool CanShareTile => false;
+
         [Inject]
         private void Inject(IPlayerController playerController) =>
             (this.playerController) = (playerController);

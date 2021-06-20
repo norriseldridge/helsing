@@ -6,6 +6,7 @@ using Helsing.Client.Entity;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
+using Helsing.Client.Extensions;
 using Helsing.Client.UI.Api;
 using Helsing.Client.World.Api;
 using UniRx;
@@ -77,10 +78,7 @@ namespace Helsing.Client.Core
         private async void PerformTurns()
         {
             isPerformingTurns = true;
-            foreach (var turnTakerGroup in turnTakerGroups)
-            {
-                await turnTakerGroup.TakeTurn();
-            }
+            await turnTakerGroups.AsyncForEach(async t => await t.TakeTurn());
             isPerformingTurns = false;
         }
 

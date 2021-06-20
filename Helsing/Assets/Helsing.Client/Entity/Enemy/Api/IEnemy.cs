@@ -2,5 +2,8 @@
 
 namespace Helsing.Client.Entity.Enemy.Api
 {
-    public interface IEnemy : ITurnTaker { }
+    public interface IEnemy : ITurnTaker
+    {
+        EnemyLogicType EnemyLogicType { get; }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.World.Api;
@@ -27,10 +28,19 @@ namespace Helsing.Client.Entity.Enemy
             {
                 currentTile = await logic.PickDestinationTile(currentTile);
                 if (currentTile != null && !moves.Contains(currentTile))
-                    moves.Add(currentTile);
+                {
+                    if (logic.CanShareTile || CanMoveToTile(currentTile))
+                        moves.Add(currentTile);
+                }
             }
 
             return moves;
+        }
+
+        bool CanMoveToTile(ITile tile)
+        {
+            var enemies = tile.GetGameObjectsOnTileOfType<IEnemy>();
+            return enemies.Where(e => !logicCache[e.GetComponent<IEnemy>().EnemyLogicType].CanShareTile).Count() == 0;
         }
     }
 }

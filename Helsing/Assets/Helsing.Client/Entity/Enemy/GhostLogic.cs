@@ -11,6 +11,8 @@ namespace Helsing.Client.Entity.Enemy
         IPlayerController playerController;
         IPathFinder pathFinder;
 
+        public bool CanShareTile => true;
+
         [Inject]
         private void Inject(IPlayerController playerController, IPathFinder pathFinder)
         {

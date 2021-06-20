@@ -25,6 +25,8 @@ namespace Helsing.Client.Entity.Enemy
         [Min(1)]
         int moveCount;
 
+        public EnemyLogicType EnemyLogicType => enemyType;
+
         int turnIndex = 0;
         ITileMover tileMover;
         IEnemyCoordinator enemyCoordinator;
