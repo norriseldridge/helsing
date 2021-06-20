@@ -55,7 +55,7 @@ namespace Helsing.Client.Entity.Player
                 .AddTo(this);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             view.Visible = !IsHidden;
             if (!isTurn) return;
@@ -104,12 +104,12 @@ namespace Helsing.Client.Entity.Player
             // wait for the user to select a destination tile
             destinationTile.Value = null;
             await destinationTile.Where(d => d != null).Take(1);
+            isTurn = false;
 
             // wait for the user to arrive at the next tile
             view.State = EntityState.Walk;
             await tileMover.MoveTo(destinationTile.Value);
             view.State = EntityState.Idle;
-            isTurn = false;
         }
     }
 }

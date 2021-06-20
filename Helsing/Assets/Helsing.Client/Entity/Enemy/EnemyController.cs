@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
+using Helsing.Client.Extensions;
 using UnityEngine;
 using Zenject;
 
@@ -48,11 +49,11 @@ namespace Helsing.Client.Entity.Enemy
 
             var moves = await enemyCoordinator.GetMoves(enemyType, moveCount, tileMover.CurrentTile.Value);
             view.State = EntityState.Walk;
-            foreach (var move in moves)
+            await moves.AsyncForEach(async m =>
             {
-                view.FlipX = move.Position.x < transform.position.x;
-                await tileMover.MoveTo(move);
-            }
+                view.FlipX = m.Position.x < transform.position.x;
+                await tileMover.MoveTo(m);
+            });
             view.State = EntityState.Idle;
         }
     }

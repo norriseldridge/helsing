@@ -35,7 +35,7 @@ namespace Helsing.Client.Core
 
             // listen for tile movers
             broker.Receive<TileMoverMovedMessage>()
-                .Subscribe(t => OnTileMoverMoved(t.tileMover))
+                .Subscribe(OnTileMoverMoved)
                 .AddTo(this);
 
             // listen for player dead
@@ -49,10 +49,7 @@ namespace Helsing.Client.Core
             var otherGroup = new TurnTakerGroup();
             var turnTakers = FindObjectsOfType<MonoBehaviour>().OfType<ITurnTaker>().Where(t => !(t is IPlayerController));
             foreach (var turnTaker in turnTakers)
-            {
                 otherGroup.TurnTakers.Add(turnTaker);
-            }
-            otherGroup.TurnTakers.Add(new MinimumTurnTaker());
             turnTakerGroups.Add(otherGroup);
 
             // add the player into a group
@@ -61,7 +58,7 @@ namespace Helsing.Client.Core
             turnTakerGroups.Add(playerGroup);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!isPerformingTurns)
             {
@@ -69,8 +66,8 @@ namespace Helsing.Client.Core
             }
         }
 
-        private void OnTileMoverMoved(ITileMover tileMover) =>
-            ResolveCombatAtTile(tileMover.CurrentTile.Value);
+        private void OnTileMoverMoved(TileMoverMovedMessage movedMessage) =>
+            ResolveCombatAtTile(movedMessage.tileMover.CurrentTile.Value);
 
         private void OnPlayerDied() =>
             deadPopup.Visible = true;
@@ -79,6 +76,7 @@ namespace Helsing.Client.Core
         {
             isPerformingTurns = true;
             await turnTakerGroups.AsyncForEach(async t => await t.TakeTurn());
+            await Task.Delay(550);
             isPerformingTurns = false;
         }
 
@@ -156,11 +154,6 @@ namespace Helsing.Client.Core
                     deads.RemoveAt(0);
                 }
             }
-        }
-
-        private class MinimumTurnTaker : ITurnTaker
-        {
-            public Task TakeTurn() => Task.Delay(50);
         }
     }
 }

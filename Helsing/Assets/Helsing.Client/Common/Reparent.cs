@@ -2,7 +2,7 @@
 
 namespace Helsing.Client.Common
 {
-    [ExecuteAlways]
+    [ExecuteInEditMode]
     public class Reparent : MonoBehaviour
     {
         // TODO how do we get a "tag" choice here instead?
@@ -14,10 +14,11 @@ namespace Helsing.Client.Common
 
         private void Update()
         {
+            if (gameObject.scene.name == gameObject.name)
+                return;
+
             if (reParent == null)
-            {
                 reParent = GameObject.FindGameObjectWithTag(parentTag)?.transform;
-            }
 
             if (transform.parent != reParent && reParent != null)
                 transform.SetParent(reParent);

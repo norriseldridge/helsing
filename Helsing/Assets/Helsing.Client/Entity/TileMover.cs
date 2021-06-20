@@ -50,7 +50,7 @@ namespace Helsing.Client.Entity
         public async Task MoveTo(ITile newNextTile)
         {
             nextTile.Value = newNextTile;
-            await nextTile.Where(n => n == null).Take(1).ToTask();
+            await nextTile.Where(n => n == null).Take(1);
         }
 
         public bool CanMove(Direction direction) => currentTile.Value.GetNeighbor(direction)?.IsFloor ?? false;
@@ -59,7 +59,8 @@ namespace Helsing.Client.Entity
         {
             if (nextTile.Value == null) return;
             var targetPosition = new Vector3(nextTile.Value.Position.x, nextTile.Value.Position.y, transform.position.z);
-            if (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+
+            if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
                 return;
