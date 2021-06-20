@@ -9,13 +9,6 @@ namespace Helsing.Client.Entity.Player
 {
     public enum Gender { Male, Female }
 
-    [System.Serializable]
-    public struct GenderControllerPair
-    {
-        public Gender gender;
-        public RuntimeAnimatorController controller;
-    }
-
     public class PlayerView : EntityView
     {
         public bool Visible
@@ -33,12 +26,12 @@ namespace Helsing.Client.Entity.Player
         [SerializeField]
         ItemView item;
 
-        [Header("Gender")]
+        [Header("Character")]
         [SerializeField]
-        Gender gender;
+        int characterIndex;
 
         [SerializeField]
-        List<GenderControllerPair> genderControllers;
+        List<RuntimeAnimatorController> animationControllers;
 
         IAudioPool audioPool;
         float currentStepDelay;
@@ -49,7 +42,7 @@ namespace Helsing.Client.Entity.Player
             this.audioPool = audioPool;
 
         private void Start() =>
-            animator.runtimeAnimatorController = genderControllers.Where(g => g.gender == gender).FirstOrDefault().controller;
+            animator.runtimeAnimatorController = animationControllers.ElementAtOrDefault(characterIndex);
 
         private void Update()
         {

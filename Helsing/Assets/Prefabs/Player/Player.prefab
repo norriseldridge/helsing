@@ -302,12 +302,12 @@ MonoBehaviour:
   step: {fileID: 8300000, guid: d31ec440b6e094db884211c3c0f0920b, type: 3}
   stepDelay: 0.5
   item: {fileID: 6539613121947915881}
-  gender: 0
-  genderControllers:
-  - gender: 0
-    controller: {fileID: 9100000, guid: a3bb2c4549f1d4b7b905bc161099def7, type: 2}
-  - gender: 1
-    controller: {fileID: 9100000, guid: ab6a89c8869df401384b601fb51688c1, type: 2}
+  characterIndex: 0
+  animationControllers:
+  - {fileID: 9100000, guid: a3bb2c4549f1d4b7b905bc161099def7, type: 2}
+  - {fileID: 9100000, guid: ab6a89c8869df401384b601fb51688c1, type: 2}
+  - {fileID: 9100000, guid: 2207b0c5744c247dea32dcdad7f85697, type: 2}
+  - {fileID: 9100000, guid: 4f1edead5a2684304aa198b2c8a21085, type: 2}
 --- !u!1 &6539613121947915882
 GameObject:
   m_ObjectHideFlags: 0
