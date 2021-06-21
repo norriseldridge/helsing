@@ -1,32 +1,29 @@
 ﻿using System.Threading.Tasks;
-using Helsing.Client.Audio.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.World.Api;
-using UnityEngine;
+using UniRx;
 using Zenject;
 
 namespace Helsing.Client.Entity.Enemy
 {
     public class HunchBackLogic : IEnemyLogic
     {
-        const string PLAYER_SEEN_SFX = "playerSeenSFX";
-
         public bool CanShareTile => false;
 
         IPlayerController playerController;
         IPathFinder pathFinder;
-        IAudioPool audioPool;
+        IMessageBroker broker;
 
         bool playerSeen = false;
 
         [Inject]
-        private void Inject(IPlayerController playerController, IPathFinder pathFinder, IAudioPool audioPool)
+        private void Inject(IPlayerController playerController, IPathFinder pathFinder, IMessageBroker broker)
         {
             this.playerController = playerController;
             this.pathFinder = pathFinder;
             this.pathFinder.OnlyFloors = true;
-            this.audioPool = audioPool;
+            this.broker = broker;
         }
 
         public async Task EveryTurn(IEnemy enemy)
@@ -36,16 +33,7 @@ namespace Helsing.Client.Entity.Enemy
             var canSeePlayer = await CanSeePlayer(enemy.TileMover.CurrentTile.Value);
             if (canSeePlayer)
             {
-                // TODO fire a "seen" message for near by enemies to use?
-                try
-                {
-                    var playerSeenSfx = enemy.Blackboard.Get<AudioClip>(PLAYER_SEEN_SFX);
-                    audioPool.Next().PlayOneShot(playerSeenSfx);
-                }
-                catch
-                {
-                    Debug.LogError($"Failed to play SFX for HunchBack ({PLAYER_SEEN_SFX})!");
-                }
+                broker.Publish(new PlayerSpottedMessage(enemy));
                 playerSeen = true;
             }
         }
