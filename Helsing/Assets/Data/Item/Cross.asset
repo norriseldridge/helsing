@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   displayName: Cross
-  sprite: {fileID: 21300000, guid: 8f144131054a54ce3866912c6a72a310, type: 3}
+  sprite: {fileID: 21300000, guid: 3d88dc6e3a0d04ba98f4e37eaf458f07, type: 3}

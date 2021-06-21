@@ -21525,6 +21525,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Item] Cross'
       objectReference: {fileID: 0}
+    - target: {fileID: 6865779376656165042, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865779376656165044, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865779376656165044, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865779376656165044, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d88dc6e3a0d04ba98f4e37eaf458f07,
+        type: 3}
+    - target: {fileID: 6865779376656165044, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865779376656165044, guid: 586796894c4ad4313984c4224b4f781d,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6865779376656165045, guid: 586796894c4ad4313984c4224b4f781d,
         type: 3}
       propertyPath: m_RootOrder
