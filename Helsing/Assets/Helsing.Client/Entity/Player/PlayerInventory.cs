@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using Helsing.Client.Item.Api;
+﻿using Helsing.Client.Item.Api;
+using UniRx;
 
 namespace Helsing.Client.Entity.Player
 {
     public class PlayerInventory : IInventory
     {
-        Dictionary<IItemData, int> items = new Dictionary<IItemData, int>();
+        public IReadOnlyReactiveDictionary<IItemData, int> Items => items;
+        ReactiveDictionary<IItemData, int> items = new ReactiveDictionary<IItemData, int>();
 
         public void AddItem(IItemData item, int quantity)
         {

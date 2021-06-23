@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcd9afcfae4a54d37a1b6b4f5e0e97c8, type: 3}
-  m_Name: Health
+  m_Name: Stake
   m_EditorClassIdentifier: 
   id: 1
   displayName: Stake

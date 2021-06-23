@@ -1,5 +1,6 @@
 ﻿using Helsing.Client.Core.Api;
 using Helsing.Client.Entity.Api;
+using Helsing.Client.Item.Api;
 
 namespace Helsing.Client.Entity.Enemy.Api
 {
@@ -8,6 +9,6 @@ namespace Helsing.Client.Entity.Enemy.Api
         EnemyLogicType EnemyLogicType { get; }
         ITileMover TileMover { get; }
         int MaxMoves { get; }
-        IEnemyControllerBlackboard Blackboard { get; }
+        IItemData KillItem { get; }
     }
 }

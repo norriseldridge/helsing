@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Extensions;
+using Helsing.Client.Item;
+using Helsing.Client.Item.Api;
 using UnityEngine;
 using Zenject;
 
@@ -27,30 +29,24 @@ namespace Helsing.Client.Entity.Enemy
         int moveCount;
 
         [SerializeField]
-        List<EnemyControllerBlackboardPair> blackboardValues;
+        ItemData killItem;
 
         public EnemyLogicType EnemyLogicType => enemyType;
         public ITileMover TileMover => tileMover;
         public int MaxMoves => moveCount;
-        public IEnemyControllerBlackboard Blackboard => blackboard;
+        public IItemData KillItem => killItem;
 
         int turnIndex = 0;
         ITileMover tileMover;
         IEnemyCoordinator enemyCoordinator;
-        IEnemyControllerBlackboard blackboard;
 
         [Inject]
-        private void Inject(IEnemyCoordinator enemyCoordinator, IEnemyControllerBlackboard blackboard) =>
-            (this.enemyCoordinator, this.blackboard) = (enemyCoordinator, blackboard);
+        private void Inject(IEnemyCoordinator enemyCoordinator) =>
+            this.enemyCoordinator = enemyCoordinator;
 
         private void Awake()
         {
             tileMover = GetComponent<ITileMover>();
-        }
-
-        private void Start()
-        {
-            blackboard.Items = blackboardValues;
         }
 
         public async Task TakeTurn()

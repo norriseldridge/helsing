@@ -48,13 +48,6 @@ namespace Helsing.Client.Entity.Player
             living = GetComponent<ILiving>();
         }
 
-        private void Start()
-        {
-            broker.Receive<HealthPickUpMessage>()
-                .Subscribe(_ => living.AddLife())
-                .AddTo(this);
-        }
-
         private void FixedUpdate()
         {
             view.Visible = !IsHidden;

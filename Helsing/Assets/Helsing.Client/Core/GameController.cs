@@ -7,6 +7,7 @@ using Helsing.Client.Entity.Api;
 using Helsing.Client.Entity.Enemy.Api;
 using Helsing.Client.Entity.Player.Api;
 using Helsing.Client.Extensions;
+using Helsing.Client.Item.Api;
 using Helsing.Client.UI.Api;
 using Helsing.Client.World.Api;
 using UniRx;
@@ -21,13 +22,15 @@ namespace Helsing.Client.Core
         List<TurnTakerGroup> turnTakerGroups = new List<TurnTakerGroup>();
         IMessageBroker broker;
         IDeadPopup deadPopup;
-        IPlayerController playController;
+        IPlayerController playerController;
+        IInventory playerInventory;
 
         [Inject]
         void Inject(IMessageBroker broker,
             IDeadPopup deadPopup,
-            IPlayerController playController) =>
-            (this.broker, this.deadPopup, this.playController) = (broker, deadPopup, playController);
+            IPlayerController playerController,
+            IInventory playerInventory) =>
+            (this.broker, this.deadPopup, this.playerController, this.playerInventory) = (broker, deadPopup, playerController, playerInventory);
 
         private void Start()
         {
@@ -39,7 +42,7 @@ namespace Helsing.Client.Core
                 .AddTo(this);
 
             // listen for player dead
-            playController.Living
+            playerController.Living
                 .LivesAsObservable
                 .Where(l => l <= 0)
                 .Subscribe(_ => OnPlayerDied())
@@ -54,7 +57,7 @@ namespace Helsing.Client.Core
 
             // add the player into a group
             var playerGroup = new TurnTakerGroup();
-            playerGroup.TurnTakers.Add(playController);
+            playerGroup.TurnTakers.Add(playerController);
             turnTakerGroups.Add(playerGroup);
         }
 
@@ -104,19 +107,29 @@ namespace Helsing.Client.Core
 
             var toDealDamage = new List<ILiving>();
             var enemies = livings.Where(l => l.GetComponent<IEnemy>() != null);
-            foreach (var enemy in enemies)
+            foreach (var enemyGo in enemies)
             {
-                var enemyLiving = enemy.GetComponent<ILiving>();
-                var enemyMover = enemy.GetComponent<ITileMover>();
+                var enemyLiving = enemyGo.GetComponent<ILiving>();
+                var enemyMover = enemyGo.GetComponent<ITileMover>();
                 if (playerMover.CurrentTile.Value == enemyMover.CurrentTile.Value)
                 {
-                    toDealDamage.Add(playerLiving);
-                    toDealDamage.Add(enemyLiving);
+                    var enemy = enemyGo.GetComponent<IEnemy>();
+                    try
+                    {
+                        // if we have the item, kill the enemy
+                        playerInventory.RemoveItem(enemy.KillItem, 1);
+                        toDealDamage.Add(enemyLiving);
+                    }
+                    catch
+                    {
+                        // if not, kill the player
+                        toDealDamage.Add(playerLiving);
+                    }
                 }
             }
 
-            foreach (var toDamage in toDealDamage.Distinct())
-                toDamage.DealDamage();
+            foreach (var living in toDealDamage)
+                living.DealDamage();
         }
 
         private void CleanUpDead(List<GameObject> livings)

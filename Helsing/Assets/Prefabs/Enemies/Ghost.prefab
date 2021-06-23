@@ -52,6 +52,7 @@ MonoBehaviour:
   enemyType: 2
   turnDelay: 2
   moveCount: 2
+  killItem: {fileID: 11400000, guid: 324fbd80065814e0e8275851c9cbec23, type: 2}
 --- !u!114 &7158582911572122157
 MonoBehaviour:
   m_ObjectHideFlags: 0

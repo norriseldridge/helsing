@@ -23,6 +23,9 @@ namespace Helsing.Client.Entity.Enemy
 
         public Task<ITile> PickDestinationTile(ITile currentTile)
         {
+            if (playerController.Living.Lives <= 0)
+                return Task.FromResult(currentTile);
+
             directionCountDown--;
             if (directionCountDown <= 0)
             {

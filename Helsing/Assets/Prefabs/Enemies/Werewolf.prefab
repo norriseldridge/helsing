@@ -51,6 +51,7 @@ MonoBehaviour:
   enemyType: 1
   turnDelay: 3
   moveCount: 3
+  killItem: {fileID: 11400000, guid: 514d675968227434589a64083a0ac020, type: 2}
 --- !u!114 &4335793526953112484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
