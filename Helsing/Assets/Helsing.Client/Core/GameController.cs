@@ -95,31 +95,23 @@ namespace Helsing.Client.Core
 
         private void DealDamage(List<GameObject> livings)
         {
-            // deal damage to all living objects that are "in combat"
+            var player = livings.Where(l => l.GetComponent<IPlayerController>() != null).FirstOrDefault();
+            if (player == null)
+                return;
+
+            var playerLiving = player.GetComponent<ILiving>();
+            var playerMover = player.GetComponent<ITileMover>();
+
             var toDealDamage = new List<ILiving>();
-            foreach (var attacker in livings)
+            var enemies = livings.Where(l => l.GetComponent<IEnemy>() != null);
+            foreach (var enemy in enemies)
             {
-                var attackLiving = attacker.GetComponent<ILiving>();
-                var attackMover = attacker.GetComponent<ITileMover>();
-                var attackEnemy = attacker.GetComponent<IEnemy>();
-
-                foreach (var defender in livings)
+                var enemyLiving = enemy.GetComponent<ILiving>();
+                var enemyMover = enemy.GetComponent<ITileMover>();
+                if (playerMover.CurrentTile.Value == enemyMover.CurrentTile.Value)
                 {
-                    if (attacker == defender)
-                        continue;
-
-                    var defendLiving = defender.GetComponent<ILiving>();
-                    var defendMover = defender.GetComponent<ITileMover>();
-                    var defendEnemy = defender.GetComponent<IEnemy>();
-
-                    if (attackEnemy != null && defendEnemy != null)
-                        continue;
-
-                    if (attackMover.CurrentTile.Value == defendMover.CurrentTile.Value)
-                    {
-                        toDealDamage.Add(attackLiving);
-                        toDealDamage.Add(defendLiving);
-                    }
+                    toDealDamage.Add(playerLiving);
+                    toDealDamage.Add(enemyLiving);
                 }
             }
 
