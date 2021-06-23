@@ -145,13 +145,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 029c030e48e2f4ea7a0cf678eda26ca1, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: fbcd40efd5cd540bba691627623f1f4a, type: 3}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

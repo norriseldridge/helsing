@@ -227,3 +227,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6587753403839420683}
   playerSeen: {fileID: 8300000, guid: 8d8d1d131761c4398aeeabb9440aa99a, type: 3}
+  dropItem: {fileID: 11400000, guid: 324fbd80065814e0e8275851c9cbec23, type: 2}
