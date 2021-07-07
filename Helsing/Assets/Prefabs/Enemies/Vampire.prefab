@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8737948071064422426}
   - component: {fileID: 8737948071064422420}
   - component: {fileID: 4107967920733542662}
+  - component: {fileID: 3550006964857744913}
   m_Layer: 11
   m_Name: Vampire
   m_TagString: Untagged
@@ -94,6 +95,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTag: EnemiesParent
+--- !u!210 &3550006964857744913
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8737948071064422424}
+  m_Enabled: 1
+  m_SortingLayerID: -107417621
+  m_SortingLayer: 4
+  m_SortingOrder: 0
 --- !u!1 &8737948071228804563
 GameObject:
   m_ObjectHideFlags: 0

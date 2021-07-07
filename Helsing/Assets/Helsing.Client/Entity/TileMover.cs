@@ -9,6 +9,7 @@ using Zenject;
 
 namespace Helsing.Client.Entity
 {
+    [ExecuteAlways]
     public class TileMover : MonoBehaviour, ITileMover
     {
         public static List<GameObject> GetObjectsOnTile(ITile tile)
@@ -45,7 +46,16 @@ namespace Helsing.Client.Entity
             nextTile.Value = null;
         }
 
-        private void Update() => MoveToNext();
+        private void Update() {
+            MoveToNext();
+#if UNITY_EDITOR
+            // snap to grid
+            var x = Mathf.RoundToInt(transform.position.x);
+            var y = Mathf.RoundToInt(transform.position.y);
+            var z = Mathf.RoundToInt(transform.position.z);
+            transform.position = new Vector3(x, y, z);
+#endif
+        } 
 
         public async Task MoveTo(ITile newNextTile)
         {
