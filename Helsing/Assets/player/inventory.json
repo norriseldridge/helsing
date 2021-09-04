@@ -1,6 +1,20 @@
 [
   {
     "id": 1,
-    "quantity": 1
+    "quantity": 1,
+    "ID": 1,
+    "Quantity": 1
+  },
+  {
+    "id": 2,
+    "quantity": 0,
+    "ID": 2,
+    "Quantity": 0
+  },
+  {
+    "id": 0,
+    "quantity": 1,
+    "ID": 0,
+    "Quantity": 1
   }
 ]

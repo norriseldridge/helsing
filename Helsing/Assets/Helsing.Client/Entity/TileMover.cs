@@ -49,11 +49,14 @@ namespace Helsing.Client.Entity
         private void Update() {
             MoveToNext();
 #if UNITY_EDITOR
-            // snap to grid
-            var x = Mathf.RoundToInt(transform.position.x);
-            var y = Mathf.RoundToInt(transform.position.y);
-            var z = Mathf.RoundToInt(transform.position.z);
-            transform.position = new Vector3(x, y, z);
+            if (!Application.isPlaying)
+            {
+                // snap to grid
+                var x = Mathf.RoundToInt(transform.position.x);
+                var y = Mathf.RoundToInt(transform.position.y);
+                var z = Mathf.RoundToInt(transform.position.z);
+                transform.position = new Vector3(x, y, z);
+            }
 #endif
         } 
 
