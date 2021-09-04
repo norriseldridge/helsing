@@ -32,15 +32,10 @@ namespace Helsing.Client.Entity.Player
 
         public bool IsHidden => CurrentTile?.IsHidingSpot ?? false;
 
-        IMessageBroker broker;
         ILiving living;
         ITileMover tileMover;
         bool isTurn = false;
         IReactiveProperty<ITile> destinationTile = new ReactiveProperty<ITile>();
-
-        [Inject]
-        private void Inject(IMessageBroker broker) =>
-            this.broker = broker;
 
         private void Awake()
         {

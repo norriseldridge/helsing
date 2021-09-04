@@ -1,12 +1,19 @@
 ﻿using Helsing.Client.Item.Api;
 using UniRx;
+using Newtonsoft.Json;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Helsing.Client.Item;
 
 namespace Helsing.Client.Entity.Player
 {
     public class PlayerInventory : IInventory
     {
+        readonly string DataPath = Path.Combine(UnityEngine.Application.dataPath, "player");
+        readonly string FilePath = Path.Combine(UnityEngine.Application.dataPath, "player", "inventory.json");
         public IReadOnlyReactiveDictionary<IItemData, int> Items => items;
-        ReactiveDictionary<IItemData, int> items = new ReactiveDictionary<IItemData, int>();
+        readonly ReactiveDictionary<IItemData, int> items = new ReactiveDictionary<IItemData, int>();
 
         public void AddItem(IItemData item, int quantity)
         {
@@ -44,14 +51,39 @@ namespace Helsing.Client.Entity.Player
             return result;
         }
 
-        public void Save()
+        public async void Save()
         {
-            // TODO save the inventory
+            if (!Directory.Exists(DataPath))
+            {
+                Directory.CreateDirectory(DataPath);
+            }
+
+            await Task.Run(() => {
+                using var stream = File.Open(FilePath, FileMode.OpenOrCreate);
+                using var writer = new StreamWriter(stream);
+
+                var temp = items.Select(i => new InventoryItemRef(i.Key.ID, i.Value)).ToArray();
+                string json = JsonConvert.SerializeObject(temp, Formatting.Indented);
+                writer.Write(json);
+            });
         }
 
         public void Load()
         {
             // TODO load the inventory
+            if (File.Exists(FilePath))
+            {
+                string json = File.ReadAllText(FilePath);
+                if (!string.IsNullOrEmpty(json))
+                {
+                    var tempItems = JsonConvert.DeserializeObject<InventoryItemRef[]>(json);
+                    foreach (var itemRef in tempItems)
+                    {
+                        // find item data by id
+
+                    }
+                }
+            }
         }
     }
 }
